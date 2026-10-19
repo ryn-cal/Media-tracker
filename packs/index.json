@@ -1,0 +1,203 @@
+{
+ "pack": "media-tracker",
+ "version": 1,
+ "packs": [
+  {
+   "id": "quotes-en-time",
+   "file": "quotes-en-time.json",
+   "kind": "quotes",
+   "name": {
+    "en": "English time quotes",
+    "zh": "英文时刻引文",
+    "fr": "Citations anglaises à l’heure"
+   },
+   "desc": {
+    "en": "Lines from public-domain novels that name the exact minute, shown when that minute comes round.",
+    "zh": "来自公版小说、点明具体时刻的句子，时间走到那一分钟时才会出现。",
+    "fr": "Phrases de romans du domaine public qui nomment la minute exacte, affichées quand cette minute arrive."
+   },
+   "langs": [
+    "en"
+   ],
+   "count": 2563,
+   "bytes": 447593
+  },
+  {
+   "id": "quotes-zh-time",
+   "file": "quotes-zh-time.json",
+   "kind": "quotes",
+   "name": {
+    "en": "Chinese time quotes",
+    "zh": "中文时辰引文",
+    "fr": "Citations chinoises à l’heure"
+   },
+   "desc": {
+    "en": "Passages from classic Chinese novels about the hour, the watch of the night, the time of day.",
+    "zh": "来自古典小说、描写时辰与更点的片段。",
+    "fr": "Extraits de romans classiques chinois sur l’heure, les veilles de la nuit, le moment de la journée."
+   },
+   "langs": [
+    "zh"
+   ],
+   "count": 207,
+   "bytes": 37339
+  },
+  {
+   "id": "quotes-world",
+   "file": "quotes-world.json",
+   "kind": "quotes",
+   "name": {
+    "en": "Poems: Japanese, French, Spanish, German",
+    "zh": "诗句：日、法、西、德语",
+    "fr": "Poèmes : japonais, français, espagnol, allemand"
+   },
+   "desc": {
+    "en": "Public-domain poems and prose lines for every time of day.",
+    "zh": "适合各个时段的公版诗文。",
+    "fr": "Poèmes et phrases du domaine public pour chaque moment de la journée."
+   },
+   "langs": [
+    "de",
+    "es",
+    "fr",
+    "ja"
+   ],
+   "count": 53,
+   "bytes": 8525
+  },
+  {
+   "id": "pictures-art",
+   "file": "pictures-art.json",
+   "kind": "pictures",
+   "name": {
+    "en": "Paintings",
+    "zh": "绘画",
+    "fr": "Peintures"
+   },
+   "desc": {
+    "en": "Western oils, Chinese ink, Japanese prints.",
+    "zh": "西方油画、中国水墨、日本浮世绘。",
+    "fr": "Huiles occidentales, encres chinoises, estampes japonaises."
+   },
+   "langs": [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "ja",
+    "zh"
+   ],
+   "count": 103,
+   "bytes": 22491
+  },
+  {
+   "id": "pictures-scene",
+   "file": "pictures-scene.json",
+   "kind": "pictures",
+   "name": {
+    "en": "Landscapes",
+    "zh": "风景",
+    "fr": "Paysages"
+   },
+   "desc": {
+    "en": "Real places and skies from around the world, tagged by country.",
+    "zh": "世界各地真实的风土与天空，按国家标注。",
+    "fr": "Lieux et ciels réels du monde entier, classés par pays."
+   },
+   "langs": [
+    "de",
+    "en",
+    "es",
+    "fr",
+    "ja",
+    "zh"
+   ],
+   "count": 93,
+   "bytes": 20048
+  },
+  {
+   "id": "pictures-film",
+   "file": "pictures-film.json",
+   "kind": "pictures",
+   "name": {
+    "en": "Film stills",
+    "zh": "电影剧照",
+    "fr": "Photogrammes"
+   },
+   "desc": {
+    "en": "Frames from silent-era classics.",
+    "zh": "默片时代经典的画面。",
+    "fr": "Images de classiques du cinéma muet."
+   },
+   "langs": [
+    "de",
+    "en",
+    "fr"
+   ],
+   "count": 11,
+   "bytes": 2929
+  },
+  {
+   "id": "pictures-book",
+   "file": "pictures-book.json",
+   "kind": "pictures",
+   "name": {
+    "en": "Books & libraries",
+    "zh": "书籍与图书馆",
+    "fr": "Livres et bibliothèques"
+   },
+   "desc": {
+    "en": "Old books, reading rooms, printed pages.",
+    "zh": "古籍、阅览室与印刷页面。",
+    "fr": "Vieux livres, salles de lecture, pages imprimées."
+   },
+   "langs": [
+    "de",
+    "en",
+    "fr",
+    "ja",
+    "zh"
+   ],
+   "count": 17,
+   "bytes": 4358
+  },
+  {
+   "id": "pictures-album",
+   "file": "pictures-album.json",
+   "kind": "pictures",
+   "name": {
+    "en": "Records & music",
+    "zh": "唱片与音乐",
+    "fr": "Disques et musique"
+   },
+   "desc": {
+    "en": "Vinyl, gramophones, sheet music.",
+    "zh": "黑胶、留声机与乐谱。",
+    "fr": "Vinyles, gramophones, partitions."
+   },
+   "langs": [
+    "ja"
+   ],
+   "count": 7,
+   "bytes": 1904
+  },
+  {
+   "id": "ui-fr",
+   "file": "ui-fr.json",
+   "kind": "ui",
+   "name": {
+    "en": "Français",
+    "zh": "Français"
+   },
+   "desc": {
+    "en": "Interface in Français.",
+    "zh": "界面语言：Français。"
+   },
+   "langs": [
+    "fr"
+   ],
+   "count": 892,
+   "bytes": 37351
+  }
+ ]
+}

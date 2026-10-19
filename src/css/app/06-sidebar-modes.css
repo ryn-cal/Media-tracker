@@ -1,0 +1,21 @@
+/* ---------- v6 · sidebar modes (fixed · scrolls · icon rail · expand-on-hover · auto-hide) ---------- */
+.app { --sw:232px; grid-template-columns:var(--sw) minmax(0,1fr); transition:grid-template-columns var(--dur-3) var(--ease); }
+.hotzone { display:none; }
+.app > .side { grid-column:1; } .app > main { grid-column:2; }
+.side { width:232px; transition:width var(--dur-3) var(--ease), background .6s, border-color .6s, box-shadow var(--dur-3), transform var(--dur-3) var(--ease); }
+.app[data-side="rail"], .app[data-side="hover"] { --sw:68px; } .app[data-side="auto"] { --sw:0px; }
+.app[data-side="scroll"] .side { position:static; height:auto; min-height:100vh; }
+.app[data-side="hover"] .side, .app[data-side="auto"] .side { position:fixed; left:0; top:0; z-index:40; }
+.app[data-side="rail"] .side, .app[data-side="hover"] .side { width:68px; overflow-x:hidden; }
+.app[data-side="hover"] .side:hover { width:232px; box-shadow:var(--elev-3); }
+.app[data-side="auto"] .side { transform:translateX(-104%); box-shadow:var(--elev-3); }
+.app[data-side="auto"] .hotzone { display:block; position:fixed; left:0; top:0; bottom:0; width:14px; z-index:39; }
+.app[data-side="auto"] .hotzone:hover ~ .side, .app[data-side="auto"] .side:hover { transform:none; }
+.app[data-side="rail"] .side, .app[data-side="hover"] .side:not(:hover) { padding-left:10px; padding-right:10px; }
+.app[data-side="rail"] .side .nav, .app[data-side="hover"] .side:not(:hover) .nav { justify-content:center; padding-left:0; padding-right:0; }
+.app[data-side="rail"] .side .nav span, .app[data-side="hover"] .side:not(:hover) .nav span, .app[data-side="rail"] .side .brand span, .app[data-side="hover"] .side:not(:hover) .brand span, .app[data-side="rail"] .side .nav-label, .app[data-side="hover"] .side:not(:hover) .nav-label, .app[data-side="rail"] .sidebtn, .app[data-side="hover"] .side:not(:hover) .sidebtn { display:none; }
+.app[data-side="rail"] .side .brand, .app[data-side="hover"] .side:not(:hover) .brand { justify-content:center; padding-left:0; padding-right:0; }
+.nav span, .brand span { white-space:nowrap; }
+.brand { position:relative; } .sidebtn { margin-left:auto; width:30px; height:30px; border-radius:var(--r-sm); border:none; background:none; color:var(--text-muted); cursor:pointer; font-size:var(--fs-lg); display:inline-flex; align-items:center; justify-content:center; transition:background var(--dur-2), color var(--dur-2); } .sidebtn:hover { background:var(--bg-accent); color:var(--text-primary); }
+.nav[data-tab="insights"] { --nc:#e0457b; }
+

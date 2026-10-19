@@ -1,0 +1,18 @@
+/* =====================================================================
+   The token ladder. Every size, radius, shadow and duration in the app is one of these (tools/css_tokens.py snaps the rest).
+   Colours of the shell are in 01-base.css (--surface-*, --text-*, --border*, --accent); the accent family is one hue.
+   ===================================================================== */
+:root {
+  /* type: eight sizes; --fs-3xl and below. The serif (--font-display) is for page titles and big numbers. */
+  --fs-2xs:11px; --fs-xs:12px; --fs-sm:13px; --fs-md:14px; --fs-lg:16px; --fs-xl:20px; --fs-2xl:28px; --fs-3xl:40px;
+  /* corners: small controls, controls and chips, cards, sheets and dialogs, pills */
+  --r-xs:6px; --r-sm:10px; --r-md:14px; --r-lg:20px; --r-pill:999px;
+  /* elevation: hairlines carry most of the app; these three are for things that float */
+  --elev-1:0 1px 2px rgba(0,0,0,.05),0 2px 8px rgba(0,0,0,.04); --elev-2:0 4px 16px rgba(0,0,0,.08),0 1px 3px rgba(0,0,0,.05); --elev-3:0 12px 40px rgba(0,0,0,.16),0 2px 8px rgba(0,0,0,.06);
+  /* motion */
+  --dur-1:.12s; --dur-2:.2s; --dur-3:.32s;
+  /* spacing (a 4 px ladder; new code uses these) */
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px;
+  /* stacking */
+  --z-sticky:8; --z-pop:60; --z-dialog:2000; --z-toast:6000; --z-tip:9999;
+}

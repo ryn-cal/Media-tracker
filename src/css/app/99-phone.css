@@ -1,0 +1,41 @@
+/* ---------- phone / bar layout ----------
+   Bottom tab bar (only the tabs chosen in Settings → Appearance → Tab bar) + a ☰ menu that slides in from the left.
+   Overrides every data-side mode of the desktop sidebar. */
+.menubtn, .mdrawer, .mscrim { display:none; }
+@media (max-width:860px), (pointer:coarse) and (hover:none) {
+  :root { --tb:60px; --sab:env(safe-area-inset-bottom, 0px); --sat:env(safe-area-inset-top, 0px); }
+  html body .app, html body .app[data-side] { display:block !important; padding-left:0; padding-bottom:calc(var(--tb) + var(--sab)); }
+  html body .app .side, html body .app[data-side] .side { position:fixed !important; left:0; right:0; bottom:0; top:auto !important; width:auto !important; height:auto !important; min-height:0 !important; transform:none !important; flex-direction:row !important; flex-wrap:nowrap; align-items:stretch !important; justify-content:space-around; overflow:hidden !important; padding:6px 6px calc(6px + var(--sab)) !important; gap:0; border-right:none !important; border-top:.5px solid var(--border) !important; box-shadow:none; z-index:60; }
+  html body .app .side .brand, html body .app .side .nav-label, html body .app .side .spacer, html body .app .side .sidebtn, html body .app .side .nav .pill, html body .app .side .nav:not([data-primary]) { display:none !important; }
+  html body .app .side .nav, html body .app[data-side] .side .nav { order:var(--bo,50); flex:1 1 0; min-width:0; flex-direction:column; justify-content:center !important; align-items:center; gap:3px; width:auto !important; margin:0; padding:7px 2px !important; border-radius:var(--r-sm); border-top:none; }
+  html body .app .side .nav i { font-size:var(--fs-xl); }
+  html body .app .side .nav span:not(.me-av):not(.pill), html body .app[data-side] .side .nav span:not(.me-av):not(.pill) { display:block !important; max-width:100%; overflow:hidden; text-overflow:ellipsis; font-size:var(--fs-2xs); line-height:1.1; letter-spacing:0; }
+  html body .app .side .nav[aria-current="page"] { box-shadow:none; } html body .app .side .nav[aria-current="page"] span { font-weight:600; }
+  main .container { padding-left:14px; padding-right:14px; position:relative; }
+  .toast { bottom:calc(var(--tb) + var(--sab) + 14px); } .selbar { bottom:calc(var(--tb) + var(--sab) + 12px); max-width:calc(100vw - 20px); }
+  body.ai-off #navAsk { display:none !important; }
+  /* filter popovers (Columns, Tag…) dock above the bar as a sheet; opening downward would put them under it */
+  .poppanel { position:fixed; left:12px; right:12px; top:auto; bottom:calc(var(--tb) + var(--sab) + 10px); width:auto; max-height:55dvh; overflow-y:auto; z-index:66; }
+
+  /* ☰ — only on the one tab that hosts the menu; the page's own title makes room for it */
+  .menubtn.on { display:flex; position:absolute; left:14px; top:14px; z-index:5; width:44px; height:44px; border-radius:50%; align-items:center; justify-content:center; border:.5px solid var(--border); background:var(--surface-2); color:var(--text-primary); font-size:var(--fs-xl); cursor:pointer; box-shadow:var(--elev-1); }
+  body.has-menu .panel:not([hidden]) > .pg-head .pg-ttl { padding-left:56px; min-height:44px; } body.has-menu .panel:not([hidden]) > .pg-head .pg-ico { display:none; }
+  body.home .menubtn.on { background:rgba(10,11,14,.35); color:#fff; border-color:rgba(255,255,255,.2); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); }
+
+  /* Settings as pages: the top bar stays put while a page scrolls */
+  .set-top { display:flex; align-items:center; gap:10px; position:sticky; top:0; z-index:30; margin:0 -14px 12px; padding:calc(var(--sat) + 8px) 14px 8px; background:color-mix(in srgb,var(--surface-0) 90%,transparent); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); }
+  .set-back { width:44px; height:44px; flex:none; border-radius:50%; border:.5px solid var(--border); background:var(--surface-2); color:var(--text-primary); font-size:var(--fs-xl); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; } .set-top h1 { margin:0; font-size:var(--fs-xl); font-weight:600; font-family:var(--fd); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .panel[data-panel="settings"][data-lv="list"] .set-list { display:flex; flex-direction:column; gap:14px; } .panel[data-panel="settings"][data-lv="list"] .set-layout, .panel[data-panel="settings"][data-lv="sec"] .set-prof { display:none; }
+  .set-nav { display:none; } .set-layout { grid-template-columns:1fr; }
+
+  /* the menu */
+  .mdrawer { display:flex; flex-direction:column; position:fixed; top:0; bottom:0; left:0; width:min(84vw,320px); z-index:70; padding:calc(var(--sat) + 16px) 10px calc(var(--sab) + 12px); background:var(--surface-1); border-right:.5px solid var(--border); box-shadow:var(--elev-3); transform:translateX(-104%); visibility:hidden; transition:transform var(--dur-3) var(--ease), visibility var(--dur-1) var(--dur-3); overflow-y:auto; }
+  .app.nav-open .mdrawer { transform:none; visibility:visible; transition:transform var(--dur-3) var(--ease); }
+  .mscrim { display:block; position:fixed; inset:0; z-index:65; background:rgba(0,0,0,.45); opacity:0; pointer-events:none; transition:opacity var(--dur-3); } .app.nav-open .mscrim { opacity:1; pointer-events:auto; }
+  .md-head { display:flex; align-items:center; gap:6px; padding:0 4px 14px; border-bottom:.5px solid var(--border); margin-bottom:8px; }
+  .md-me { flex:1; min-width:0; display:flex; align-items:center; gap:12px; padding:6px; border:none; background:none; border-radius:var(--r-md); color:inherit; font:inherit; text-align:left; cursor:pointer; } .md-me .me-av { width:48px; height:48px; font-size:var(--fs-xl); }
+  .md-me .tx { display:flex; flex-direction:column; min-width:0; } .md-me b { font-weight:600; font-size:var(--fs-lg); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; } .md-me small { color:var(--text-muted); font-size:var(--fs-xs); }
+  .md-ico { width:44px; height:44px; flex:none; border-radius:50%; border:none; background:var(--surface-0); color:var(--text-secondary); font-size:var(--fs-xl); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; }
+  .md-item { display:flex; align-items:center; gap:14px; width:100%; min-height:50px; padding:10px 14px; border:none; background:none; border-radius:var(--r-md); color:var(--text-primary); font:inherit; font-size:var(--fs-md); text-align:left; cursor:pointer; } .md-item i { font-size:var(--fs-xl); color:var(--text-secondary); }
+  .md-item[aria-current="page"] { background:color-mix(in srgb,var(--accent) 12%,transparent); font-weight:600; } .md-item[aria-current="page"] i { color:var(--accent); }
+}

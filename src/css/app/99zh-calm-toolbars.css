@@ -1,0 +1,310 @@
+/* Quieter library toolbars, after Notion: the tools are plain text until pointed at, the search is a hairline, the one primary action (Add) carries the colour.
+   More air between the title, the views and the list; the data you filled in is the loudest thing on the page. */
+.pg-head { margin-bottom:22px; }
+.lib-tabs { margin-bottom:6px; }
+.lib-tools { gap:2px; margin:8px 0 20px; }
+.lib-tools .fbtn { height:32px; padding:0 10px; gap:6px; border-color:transparent; background:transparent; color:var(--text-secondary); font-weight:400; }
+.lib-tools .fbtn i { opacity:.75; }
+.lib-tools .fbtn:hover { background:var(--surface-2); color:var(--text-primary); }
+.lib-tools .fbtn.on { background:var(--bg-accent); border-color:transparent; color:var(--text-accent); }
+.lib-tools .search { max-width:280px; }
+.lib-tools .search input { height:32px; border:none; border-bottom:.5px solid var(--border-strong); border-radius:0; background:transparent; box-shadow:none; }
+.lib-tools .search input:focus { border-bottom-color:var(--fill-accent); box-shadow:none; }
+/* the Properties list: the drag handle is a narrow column, not a stretched cell */
+.pr-row span.grip { flex:none; width:24px; height:28px; }
+.pr-row { gap:10px; padding:4px 6px; }
+.pr-row > i { width:20px; text-align:center; }
+
+/* the home page's empty draw is centred under the buttons */
+.hs-pick .pick-empty { margin:0 auto; text-align:center; }
+/* three sizes, three jobs: the view names lead, the tools are small, the table's own column labels are smaller still */
+.lib-tabs .vt { font-size:var(--fs-md); padding:9px 14px; } .lib-tabs .vt.on { font-weight:600; }
+.lib-tools .fbtn { font-size:var(--fs-xs); }
+.lib-tools .tcount { font-size:var(--fs-xs); }
+.dtable th { font-size:var(--fs-xs); font-weight:500; color:var(--text-muted); letter-spacing:.02em; }
+.dtable td.tc-title { font-size:var(--fs-md); font-weight:500; }
+.grp-h { font-size:var(--fs-xs); letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); }
+.lib-tools .search input:focus-visible { outline:none; border-bottom:2px solid var(--fill-accent); }
+
+/* the table, after Notion: no card around it, headers are plain muted labels with their icon, light rules between columns and rows, a neutral row hover */
+.dtable-wrap { border:none; border-radius:0; background:transparent; }
+.dtable th { padding:10px 12px; font-size:var(--fs-sm); font-weight:500; letter-spacing:0; color:var(--text-secondary); background:transparent; border-bottom:.5px solid var(--border-strong); }
+.dtable th + th, .dtable td + td { border-left:.5px solid var(--border); }
+.dtable th i:first-child { opacity:.75; margin-right:7px; }
+.dtable td { padding:10px 12px; border-bottom:.5px solid var(--border); }
+.dtable tbody tr:last-child td { border-bottom:.5px solid var(--border); }
+.dtable tbody tr:hover td { background:color-mix(in srgb, var(--text-primary) 4%, transparent); }
+.dtable td.tc-title { font-size:var(--fs-md); font-weight:500; }
+/* Properties: handle, icon, name, and the eye at the far end */
+.pr-row { padding:5px 6px; border-radius:var(--r-xs); } .pr-row:hover { background:color-mix(in srgb, var(--text-primary) 5%, transparent); }
+.pr-row .grip { color:var(--text-muted); opacity:.55; } .pr-row:hover .grip { opacity:1; }
+.pr-row > i { font-size:var(--fs-xl); color:var(--text-primary); }
+.pr-row span:not(.grip) { font-size:var(--fs-md); }
+.pr-row .ibtn { margin-left:auto; color:var(--text-primary); } .pr-row:not(.vis) { color:var(--text-muted); } .pr-row:not(.vis) .ibtn, .pr-row:not(.vis) > i { color:var(--text-muted); }
+
+/* ---- database v18b: icon-only tools, a "New" row, a gutter checkbox, a calculation footer, a plain eye ---- */
+.lib-tools .fbtn, .ld-find .fbtn { width:32px; padding:0; justify-content:center; position:relative; }
+.lib-tools .fbtn i, .ld-find .fbtn i { font-size:var(--fs-xl); opacity:.8; }
+.lib-tools .fbtn .badge, .ld-find .fbtn .badge { position:absolute; top:1px; right:0; min-width:14px; height:14px; padding:0 3px; font-size:var(--fs-2xs); line-height:14px; }
+.newrow { display:flex; align-items:center; gap:8px; width:100%; padding:10px 12px; border:none; border-bottom:.5px solid var(--border); background:transparent; color:var(--text-muted); font:inherit; font-size:var(--fs-md); cursor:pointer; text-align:left; }
+.newrow:hover { background:color-mix(in srgb, var(--text-primary) 4%, transparent); color:var(--text-primary); }
+.dtable .ck.pick { width:34px; padding:0 0 0 10px; }
+.dtable .pick input { margin:0; opacity:0; cursor:pointer; accent-color:var(--fill-accent); }
+.dtable tr:hover .pick input, .dtable tr.sel .pick input, .dtable th.pick input:checked, .dtable th.pick:hover input, .dtable input:focus-visible { opacity:1; }
+.dtable tr.sel td { background:var(--bg-accent); }
+@media (hover:none) { .dtable .pick input { opacity:.55; } }
+.mcard .chk { left:10px; right:auto; opacity:0; cursor:pointer; } .mcard:hover .chk, .mcard.sel .chk, .mcard .chk:focus-visible { opacity:1; }
+.mcard .chk + .favbtn { display:flex; }
+@media (hover:none) { .mcard .chk { opacity:.8; } }
+.dtable tfoot td { padding:8px 12px; border-top:.5px solid var(--border-strong); border-bottom:none; font-size:var(--fs-xs); color:var(--text-muted); white-space:nowrap; }
+.dtable tfoot td + td { border-left:.5px solid var(--border); }
+.dtable tfoot td.cf { cursor:pointer; } .dtable tfoot td.cf:hover { background:color-mix(in srgb, var(--text-primary) 4%, transparent); }
+.cf .cf-l { text-transform:uppercase; letter-spacing:.06em; margin-right:8px; } .cf b { font-weight:500; font-size:var(--fs-md); color:var(--text-primary); }
+.cf .cf-add { opacity:0; } .dtable tfoot:hover .cf-add, .cf:focus-visible .cf-add { opacity:.8; }
+.pop-h-row { display:flex; align-items:center; justify-content:space-between; gap:12px; } .pop-h-row .linkbtn2 { font-size:var(--fs-xs); color:var(--text-accent); background:none; border:none; cursor:pointer; padding:0; }
+.pr-row .eye { margin-left:auto; display:inline-flex; width:28px; height:28px; align-items:center; justify-content:center; border:none; background:none; box-shadow:none; border-radius:var(--r-xs); color:var(--text-primary); cursor:pointer; padding:0; }
+.pr-row .eye:hover { background:color-mix(in srgb, var(--text-primary) 8%, transparent); } .pr-row .eye i { font-size:var(--fs-xl); }
+.pr-row .eye.dim { opacity:.35; cursor:default; } .pr-row:not(.vis) .eye { color:var(--text-muted); }
+
+/* the assistant's avatar: hairline ring, accent spark, flat */
+.am .av { background:var(--surface-0); border:.5px solid var(--border-strong); color:var(--text-accent); }
+.am .av svg { width:18px; height:18px; fill:currentColor; }
+
+/* ---- round 2: solid surface, square corners, rigid lines, tight cells, hover-only grips ---- */
+.lib-tools .fbtn, .lib-tools .fbtn i, .ld-find .fbtn i { color:var(--text-primary); opacity:1; }
+.lib-tools .fbtn:hover { background:color-mix(in srgb, var(--text-primary) 8%, transparent); }
+.dtable-wrap { background:var(--surface-0); border:1px solid var(--border-strong); border-radius:0; }
+.dtable th { padding:6px 10px; color:var(--text-primary); border-bottom:1px solid var(--border-strong); }
+.dtable th i:first-child { opacity:1; color:var(--text-primary); margin-right:6px; }
+.dtable td { padding:6px 10px; border-bottom:1px solid var(--border-strong); }
+.dtable th + th, .dtable td + td, .dtable tfoot td + td { border-left:1px solid var(--border-strong); }
+.dtable .ck.pick { width:28px; padding:0 0 0 8px; }
+.dtable .pick input { -webkit-appearance:none; appearance:none; width:15px; height:15px; border:1px solid var(--text-secondary); border-radius:0; background:var(--surface-0); display:inline-block; vertical-align:middle; position:relative; }
+.dtable .pick input:checked { background:var(--fill-accent); border-color:var(--fill-accent); }
+.dtable .pick input:checked::after { content:''; position:absolute; left:4px; top:1px; width:4px; height:8px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); }
+.dtable tr.sel td { background:color-mix(in srgb, var(--fill-accent) 14%, var(--surface-0)); }
+.dtable tfoot td { background:var(--surface-0); border-top:1px solid var(--border-strong); padding:5px 10px; }
+.newrow { background:var(--surface-0); border:1px solid var(--border-strong); border-top:none; padding:7px 10px; }
+.mcard .chk { border-radius:2px; width:20px; height:20px; }
+.selhint { border-radius:0; } .selhint .linkbtn2 { margin-left:auto; flex:none; font-size:var(--fs-xs); color:var(--text-accent); background:none; border:none; cursor:pointer; }
+.pr-row .grip, .drow .grip, .ls-item .grip { opacity:0; } .pr-row:hover .grip, .drow:hover .grip, .ls-item:hover .grip, .grip:focus-visible { opacity:1; }
+.bh em.bagg { font-style:normal; cursor:pointer; color:var(--text-secondary); padding:1px 4px; } .bh em.bagg:hover { background:color-mix(in srgb, var(--text-primary) 8%, transparent); color:var(--text-primary); }
+.fillh { position:fixed; width:9px; height:9px; background:var(--fill-accent); border:1.5px solid var(--surface-0); cursor:crosshair; z-index:60; }
+body.filling, body.filling * { user-select:none; cursor:crosshair !important; }
+td.fillrange { outline:1px dashed var(--fill-accent); outline-offset:-1px; background:color-mix(in srgb, var(--fill-accent) 10%, var(--surface-0)); }
+#lpMore { align-self:center; }
+
+/* ---- round 3: visible but softer lines, rounded frame, a quiet "New", picks in every layout, a distinct page header, doc-style guide ---- */
+.dtable-wrap { border:1px solid var(--line-vis); border-radius:10px; overflow:hidden; }
+:root { --line-vis:color-mix(in srgb, var(--text-primary) 24%, transparent); }
+.dtable th, .dtable td { border-bottom:1px solid var(--line-vis); }
+.dtable th + th, .dtable td + td, .dtable tfoot td + td { border-left:1px solid var(--line-vis); }
+.dtable tfoot td { border-top:1px solid var(--line-vis); border-bottom:none; }
+.dtable .pick input { border-radius:4px; border-color:var(--text-muted); }
+.dtable tr.sel td { background:color-mix(in srgb, var(--fill-accent) 9%, var(--surface-0)); }
+.newrow { width:auto; border:none; background:transparent; padding:7px 10px; margin-top:6px; border-radius:6px; color:var(--text-muted); font-size:var(--fs-sm); }
+.newrow:hover { background:color-mix(in srgb, var(--text-primary) 6%, transparent); }
+.mcard, .bcard, .drow { position:relative; }
+.mcard > .chk, .bcard > .chk, .drow > .chk { position:absolute; top:10px; left:10px; z-index:3; width:20px; height:20px; border-radius:5px; background:var(--surface-0); border:1.5px solid var(--text-muted); color:transparent; display:flex; align-items:center; justify-content:center; opacity:0; cursor:pointer; }
+.drow > .chk { top:50%; transform:translateY(-50%); }
+.mcard:hover > .chk, .bcard:hover > .chk, .drow:hover > .chk, .mcard.sel > .chk, .bcard.sel > .chk, .drow.sel > .chk { opacity:1; }
+.mcard.sel > .chk, .bcard.sel > .chk, .drow.sel > .chk { background:var(--fill-accent); border-color:var(--fill-accent); color:#fff; }
+.bcard.sel, .drow.sel, .mcard.sel { box-shadow:0 0 0 2px var(--fill-accent) inset; }
+@media (hover:none) { .mcard > .chk, .bcard > .chk, .drow > .chk { opacity:.85; } }
+.drow { padding-left:40px; }
+/* each page's header is its own band, set apart from the content below */
+/* the sort control in Lists: flat, like the tools beside it */
+.sortsel select { border:none; background:transparent; box-shadow:none; padding:4px 22px 4px 4px; font-size:var(--fs-sm); font-weight:500; color:var(--text-primary); cursor:pointer; }
+.sortsel select:hover { background:color-mix(in srgb, var(--text-primary) 6%, transparent); border-radius:6px; }
+/* guide: doc-style tables */
+.gd-doc h3 { font:600 20px/1.2 var(--disp); margin-bottom:8px; }
+.gd-tab { width:100%; border-collapse:collapse; font-size:var(--fs-md); border-top:1px solid var(--line-vis); }
+.gd-tab th, .gd-tab td { text-align:left; vertical-align:top; padding:8px 12px 8px 0; border-bottom:1px solid var(--border); font-weight:400; }
+.gd-tab th { width:34%; font-weight:600; white-space:nowrap; } .gd-tab td { color:var(--text-secondary); line-height:1.6; }
+.gd-tab kbd { font:500 var(--fs-xs) var(--mono, ui-monospace, monospace); padding:2px 6px; border:1px solid var(--line-vis); border-radius:4px; background:var(--surface-0); }
+.bcard > .chk { left:auto; right:8px; top:8px; }
+.mcard.nocover > .chk { top:8px; left:auto; right:8px; }
+
+/* ---- round 4: tools are flat text-weight controls like the Lists sort; frame lines out, inner lines stay; a header that is a soft veil ---- */
+:root { --line-vis:color-mix(in srgb, var(--text-primary) 34%, transparent); }
+.lib-tools .fbtn, .lib-tools .fbtn.on, .ld-find .fbtn, .ld-find .fbtn.on { background:transparent; border:none; box-shadow:none; }
+.lib-tools .fbtn.on, .ld-find .fbtn.on { color:var(--text-accent); } .lib-tools .fbtn.on i, .ld-find .fbtn.on i { color:var(--text-accent); }
+.dtable-wrap { border:none; border-radius:0; }
+.dtable th:first-child, .dtable td:first-child { border-left:none; } .dtable th:last-child, .dtable td:last-child { border-right:none; }
+.dtable th { border-top:1px solid var(--line-vis); }
+.dtable th { background:color-mix(in srgb, var(--text-primary) 4%, var(--surface-0)); }
+.gd-q summary kbd, .gd-a kbd { font:500 var(--fs-xs) ui-monospace, monospace; font-style:normal; padding:2px 6px; border:1px solid var(--line-vis); border-radius:4px; background:var(--surface-0); margin-right:4px; }
+.bagg { cursor:pointer; } .grp-h b.bagg:hover { background:color-mix(in srgb, var(--text-primary) 8%, transparent); }
+
+/* ---- round 5: selection reads the same in every layout; a clearer table; a header with presence; the handbook as an article ---- */
+.selmode .dtable .pick input, .selmode .mcard > .chk, .selmode .bcard > .chk, .selmode .drow > .chk { opacity:1; }
+.dtable tr.sel td { background:color-mix(in srgb, var(--fill-accent) 18%, var(--surface-0)); }
+.dtable tr.sel td:first-child { box-shadow:inset 3px 0 0 var(--fill-accent); }
+.selmode .dtable tr:not(.sel) td { color:var(--text-secondary); }
+.dtable thead th { position:sticky; top:0; z-index:2; font-weight:600; background:color-mix(in srgb, var(--text-primary) 6%, var(--surface-0)); }
+.dtable tbody tr:nth-child(even) td { background:color-mix(in srgb, var(--text-primary) 2.5%, var(--surface-0)); }
+.dtable tbody tr:hover td { background:color-mix(in srgb, var(--fill-accent) 8%, var(--surface-0)); }
+.dtable td { padding:8px 10px; } .dtable td.tc-title { font-weight:600; }
+
+/* ---- round 6: no blur; table lines melt into the page and the table scrolls sideways; light-grey icons; the handbook as a small book ---- */
+:root { --line-vis:color-mix(in srgb, var(--text-primary) 13%, transparent); --ico:color-mix(in srgb, var(--text-primary) 42%, transparent); }
+.dtable-wrap { overflow-x:auto; overflow-y:visible; }
+.dtable { width:max-content; min-width:100%; }
+.dtable th, .dtable td { min-width:120px; } .dtable .ck, .dtable th.ck, .dtable td.ck { min-width:0; }
+.dtable th, .dtable td { border-bottom:1px solid var(--line-vis); } .dtable th + th, .dtable td + td, .dtable tfoot td + td { border-left:1px solid color-mix(in srgb, var(--text-primary) 7%, transparent); }
+.dtable thead th { background:color-mix(in srgb, var(--text-primary) 3%, var(--surface-0)); border-top:none; }
+.dtable tbody tr:nth-child(even) td { background:var(--surface-0); }
+.dtable tfoot td { border-top:1px solid var(--line-vis); }
+.lib-tools .fbtn i, .ld-find .fbtn i, .dtable th i:first-child, .pr-row > i, .newrow i, .lib-tabs .vt > i { color:var(--ico); opacity:1; }
+.lib-tools .fbtn:hover i { color:var(--text-primary); } .lib-tools .fbtn.on i { color:var(--text-accent); }
+.pr-row .eye { color:var(--ico); } .pr-row .eye:hover { color:var(--text-primary); }
+.hbk { max-width:980px; }
+.hbk-book { display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); min-height:430px; background:var(--surface-0); border:1px solid var(--line-vis); border-radius:6px 14px 14px 6px; box-shadow:0 1px 0 var(--line-vis); position:relative; animation:hbk-in .35s var(--ease) both; }
+.hbk[data-dir="-1"] .hbk-book { animation-name:hbk-in-b; }
+@keyframes hbk-in { from { opacity:0; transform:translateX(14px); } to { opacity:1; transform:none; } } @keyframes hbk-in-b { from { opacity:0; transform:translateX(-14px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) { .hbk-book { animation:none; } }
+.hbk-book::before { content:''; position:absolute; left:45.4%; top:0; bottom:0; width:1px; background:var(--line-vis); box-shadow:-10px 0 18px -12px rgba(0,0,0,.18), 10px 0 18px -12px rgba(0,0,0,.12); }
+.hbk-l { display:flex; align-items:center; justify-content:center; padding:28px; position:relative; background:color-mix(in srgb, var(--text-primary) 2.5%, var(--surface-0)); border-radius:6px 0 0 6px; }
+.hbk-fig { width:100%; max-width:300px; color:var(--text-secondary); }
+.hb-svg { width:100%; height:auto; } .hb-svg .tx { font:500 11px var(--sans, system-ui, sans-serif); fill:var(--text-secondary); stroke:none; }
+.hb-svg .acc { stroke:var(--fill-accent); fill:color-mix(in srgb, var(--fill-accent) 14%, transparent); } .hb-svg rect.acc[width="12"], .hb-svg rect.acc[width="10"] { fill:var(--fill-accent); }
+.hb-svg .accf { fill:var(--fill-accent); stroke:var(--fill-accent); } .hb-svg .accs { stroke:var(--fill-accent); } .hb-svg .soft { fill:color-mix(in srgb, var(--text-primary) 5%, transparent); stroke:none; } .hb-svg .fillc { fill:currentColor; }
+.hbk-r { padding:30px 34px 44px; position:relative; overflow:auto; max-height:560px; }
+.hbk-r h2 { font:700 26px/1.2 var(--disp); margin:0 0 18px; } .hbk-r h3 { font:600 var(--fs-md) var(--sans, sans-serif); margin:20px 0 4px; }
+.hbk-r p { font-size:var(--fs-md); line-height:1.85; color:var(--text-primary); max-width:56ch; }
+.hb-dl { margin:0; } .hb-dl dt { font:600 var(--fs-md) var(--sans, sans-serif); margin-top:12px; } .hb-dl dd { margin:2px 0 0; font-size:var(--fs-sm); line-height:1.7; color:var(--text-secondary); }
+.hb-tab { width:100%; border-collapse:collapse; font-size:var(--fs-sm); } .hb-tab th, .hb-tab td { text-align:left; vertical-align:top; padding:8px 12px 8px 0; border-bottom:1px solid var(--line-vis); font-weight:400; line-height:1.5; } .hb-tab th { width:44%; font-weight:600; }
+.hb-tab kbd { font:500 var(--fs-xs) ui-monospace, monospace; padding:2px 7px; border:1px solid var(--line-vis); border-bottom-width:2px; border-radius:5px; background:var(--surface-0); margin-right:4px; }
+.hb-steps { margin:0; padding-left:22px; font-size:var(--fs-md); line-height:1.9; } .hb-steps li::marker { color:var(--text-accent); font-weight:600; }
+.hbk-no { position:absolute; bottom:14px; font-size:var(--fs-xs); color:var(--text-muted); } .hbk-l .hbk-no { left:22px; } .hbk-r .hbk-no { right:22px; }
+.hbk-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:16px; }
+.hbk-dots { display:flex; gap:6px; flex-wrap:wrap; justify-content:center; } .hbk-dots button { border:none; background:none; padding:6px; cursor:pointer; } .hbk-dots button span { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+.hbk-dots i { display:block; width:8px; height:8px; border-radius:50%; background:var(--line-vis); } .hbk-dots [aria-selected="true"] i { background:var(--fill-accent); width:22px; border-radius:4px; transition:width .25s var(--ease); }
+@media (max-width:760px) { .hbk-book { grid-template-columns:1fr; } .hbk-book::before { display:none; } .hbk-l { border-radius:6px 14px 0 0; padding:16px; } .hbk-fig { max-width:220px; } .hbk-r { max-height:none; } }
+
+/* ---- round 7: one row for views and tools; small light icons; the handbook as slides ---- */
+.lib-bar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+.lib-bar .lib-tabs { flex:1 1 auto; margin:0; min-width:0; } .lib-bar .lib-tools { margin:0; flex:none; flex-wrap:nowrap; }
+.lib-bar .lib-tools .search { max-width:170px; }
+:root { --ico:color-mix(in srgb, var(--text-primary) 34%, transparent); }
+.lib-tools .fbtn { width:28px; height:28px; } .lib-tools .fbtn i, .ld-find .fbtn i { font-size:15px; }
+.dtable th i:first-child, .pr-row > i { font-size:13px; } .lib-tabs .vt > i { font-size:14px; }
+.hbk { max-width:1000px; display:grid; grid-template-columns:34px minmax(0,1fr) 34px; align-items:center; gap:8px; }
+.hbk-slide { grid-column:2; display:grid; grid-template-columns:minmax(0,5fr) minmax(0,6fr); aspect-ratio:16 / 9; overflow:hidden; background:var(--surface-0); border:1px solid var(--line-vis); border-radius:12px; position:relative; animation:hbk-in .35s var(--ease) both; }
+.hbk[data-dir="-1"] .hbk-slide { animation-name:hbk-in-b; }
+.hbk .gd-arrow:first-child { grid-column:1; } .hbk .gd-arrow:last-of-type { grid-column:3; } .hbk .gd-arrow[disabled] { opacity:.25; pointer-events:none; } .hbk .gd-arrow:first-child:hover { transform:translateX(-3px); }
+.hbk-slide .hbk-l { border-radius:0; padding:22px; } .hbk-slide .hbk-fig { max-width:280px; }
+.hbk-slide .hbk-r { max-height:none; overflow:hidden; padding:26px 30px 36px; }
+.hbk-slide .hbk-r h2 { font-size:22px; margin-bottom:12px; } .hbk-slide .hb-dl dt { margin-top:8px; font-size:var(--fs-md); } .hbk-slide .hb-dl dd { font-size:var(--fs-sm); line-height:1.55; }
+.hbk-slide .hb-tab { font-size:var(--fs-xs); } .hbk-slide .hb-tab th, .hbk-slide .hb-tab td { padding:5px 10px 5px 0; }
+.hbk-slide .hb-steps { font-size:var(--fs-md); line-height:1.8; }
+.hbk-foot { grid-column:2; display:flex; align-items:center; gap:12px; font-size:var(--fs-xs); color:var(--text-muted); } .hbk-foot i { flex:1; height:2px; background:var(--line-vis); border-radius:1px; position:relative; } .hbk-foot i b { position:absolute; left:0; top:0; bottom:0; background:var(--fill-accent); border-radius:1px; transition:width .3s var(--ease); }
+@media (max-width:760px) { .hbk { grid-template-columns:28px minmax(0,1fr) 28px; } .hbk-slide { aspect-ratio:auto; grid-template-columns:1fr; } .hbk-slide .hbk-l { padding:14px; } .hbk-slide .hbk-fig { max-width:200px; } }
+
+/* ---- round 7b: header as normal; plain arrows and dots for the handbook slides; a narrow selection gutter ---- */
+.pg-head { background:none; -webkit-backdrop-filter:none; backdrop-filter:none; }
+.hbk .gd-arrow, .hbk .gd-arrow:hover, .hbk .gd-arrow:first-child:hover { background:none; border-radius:0; transform:none; transition:color .2s; width:34px; height:34px; } .hbk .gd-arrow:hover { color:var(--text-primary); }
+.hbk .gd-arrow i { font-size:22px; }
+.hbk-slide { grid-template-columns:minmax(0,1fr); }
+.hbk-slide .hbk-r { padding:30px 38px; }
+.hb-two { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:6px 40px; align-items:start; }
+.hbk-slide .hbk-r h2 { font-size:24px; margin-bottom:16px; }
+.hbk-foot { grid-column:2; display:flex; justify-content:center; gap:4px; }
+.hbk-foot button { border:none; background:none; padding:6px; cursor:pointer; } .hbk-foot button i { display:block; width:7px; height:7px; border-radius:50%; background:var(--line-vis); transition:background .2s; }
+.hbk-foot button[aria-selected="true"] i { background:var(--fill-accent); } .hbk-foot button:hover i { background:var(--text-muted); } .hbk-foot button[aria-selected="true"]:hover i { background:var(--fill-accent); }
+@media (max-width:760px) { .hb-two { grid-template-columns:1fr; } .hbk-slide { overflow:auto; } }
+.dtable th.ck, .dtable td.ck { width:1%; min-width:0; } .dtable th.pick, .dtable td.pick { padding:0 0 0 8px; }
+
+/* ---- round 8: handbook slide polished, arrows and dots on one line; page titles carry the emphasis ---- */
+.panel[data-panel] .page-title { font-size:clamp(34px,4.2vw,50px); font-weight:600; letter-spacing:-.01em; line-height:1.05; }
+.hbk { display:block; max-width:960px; }
+.hbk-slide { display:block; aspect-ratio:auto; min-height:400px; border:none; border-radius:14px; background:var(--surface-0); box-shadow:0 1px 2px rgba(0,0,0,.05), 0 18px 38px -24px rgba(0,0,0,.22); overflow:hidden; }
+.hbk-slide .hbk-r { padding:34px 44px 38px; }
+.hbk-k { display:flex; align-items:center; gap:10px; font-size:var(--fs-2xs); letter-spacing:.24em; color:var(--text-muted); margin-bottom:10px; } .hbk-k i { width:26px; height:1px; background:var(--line-vis); }
+.hbk-slide .hbk-r h2 { font:600 28px/1.15 var(--disp); margin:0 0 6px; } .hbk-slide .hbk-r h2::after { content:''; display:block; width:30px; height:2px; margin:12px 0 18px; background:var(--fill-accent); border-radius:1px; }
+.hbk-slide .hb-two { gap:4px 48px; }
+.hbk-slide .hb-dl dt { margin-top:14px; font:600 var(--fs-md) var(--sans, system-ui, sans-serif); } .hbk-slide .hb-dl dt:first-child { margin-top:0; }
+.hbk-slide .hb-dl dd { font-size:var(--fs-sm); line-height:1.6; color:var(--text-secondary); max-width:42ch; }
+.hbk-slide .hb-tab { font-size:var(--fs-sm); } .hbk-slide .hb-tab th, .hbk-slide .hb-tab td { padding:9px 14px 9px 0; border-bottom:1px solid color-mix(in srgb, var(--text-primary) 8%, transparent); } .hbk-slide .hb-tab tr:last-child th, .hbk-slide .hb-tab tr:last-child td { border-bottom:none; }
+.hbk-slide .hb-tab th { width:40%; } .hbk-slide .hb-tab td { color:var(--text-secondary); }
+.hbk-slide .hb-tab kbd { font:500 11px ui-monospace, monospace; padding:2px 7px; border:1px solid var(--line-vis); border-bottom-width:2px; border-radius:5px; background:color-mix(in srgb, var(--text-primary) 3%, var(--surface-0)); }
+.hbk-slide .hb-steps { font-size:var(--fs-md); line-height:2; } .hbk-slide p { max-width:56ch; }
+.hbk-nav { display:flex; align-items:center; justify-content:center; gap:18px; margin-top:16px; }
+.hbk-nav .gd-arrow { flex:none; }
+.hbk-foot { grid-column:auto; display:flex; gap:2px; align-items:center; }
+.dtable td.tc-checkbox { min-width:0; width:1%; }
+
+/* ---- round 9: handbook as a borderless slide (tinted side panel, own type, page number bottom-right); softer table; flat selects; no filter badge; reader seek without a box ---- */
+.hbk-slide { display:grid; grid-template-columns:minmax(150px,26%) minmax(0,1fr); border:none; box-shadow:0 20px 44px -28px rgba(0,0,0,.28); border-radius:18px; background:var(--surface-0); position:relative; min-height:420px; overflow:hidden; }
+.hbk-side { display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:30px 28px; background:linear-gradient(160deg, color-mix(in srgb, var(--fill-accent) 20%, var(--surface-0)), color-mix(in srgb, var(--fill-accent) 6%, var(--surface-0))); color:var(--text-accent); }
+.hbk-side i { font-size:46px; opacity:.9; } .hbk-side b { font:200 88px/0.9 var(--font-num, var(--font-ui, system-ui)); letter-spacing:-.04em; opacity:.5; }
+.hbk-slide .hbk-r { padding:34px 44px 52px; font-family:var(--font-ui, system-ui, sans-serif); }
+.hbk-slide .hbk-r h2 { font:700 30px/1.1 var(--font-ui, system-ui, sans-serif); letter-spacing:-.025em; margin:0 0 4px; } .hbk-slide .hbk-r h2::after { width:36px; height:3px; margin:14px 0 20px; }
+.hbk-slide .hb-dl dt { font:700 var(--fs-md) var(--font-ui, sans-serif); color:var(--text-accent); letter-spacing:.01em; }
+.hbk-slide .hb-dl dd { font:400 18px/1.55 var(--disp); color:var(--text-primary); max-width:36ch; }
+.hbk-slide .hb-tab th, .hbk-slide .hb-tab td { border:none; padding:7px 14px 7px 0; } .hbk-slide .hb-tab tr:nth-child(odd) th, .hbk-slide .hb-tab tr:nth-child(odd) td { background:color-mix(in srgb, var(--text-primary) 3%, transparent); } .hbk-slide .hb-tab th { padding-left:10px; font-weight:600; } .hbk-slide .hb-tab td { font:400 16px/1.4 var(--disp); color:var(--text-primary); }
+.hbk-slide .hb-tab kbd { border:none; background:color-mix(in srgb, var(--fill-accent) 12%, var(--surface-0)); color:var(--text-accent); font:600 11px ui-monospace, monospace; box-shadow:0 1px 0 color-mix(in srgb, var(--fill-accent) 35%, transparent); }
+.hbk-slide .hb-steps { font:400 19px/2 var(--disp); } .hbk-slide .hb-steps li::marker { font:700 15px var(--font-ui, sans-serif); color:var(--text-accent); }
+.hbk-slide p { font:400 19px/1.75 var(--disp); }
+.hbk-pn { position:absolute; right:22px; bottom:16px; font:500 var(--fs-xs) var(--font-ui, sans-serif); color:var(--text-muted); letter-spacing:.08em; }
+@media (max-width:760px) { .hbk-slide { grid-template-columns:1fr; } .hbk-side { flex-direction:row; align-items:center; padding:14px 20px; } .hbk-side b { font-size:40px; } .hbk-side i { font-size:28px; } }
+/* table: soft, no cell grid */
+.dtable th + th, .dtable td + td, .dtable tfoot td + td { border-left:none; }
+.dtable th, .dtable td { padding-top:10px; padding-bottom:10px; border-bottom:1px solid color-mix(in srgb, var(--text-primary) 8%, transparent); }
+.dtable thead th { background:none; border-bottom:1px solid color-mix(in srgb, var(--text-primary) 16%, transparent); font-weight:600; color:var(--text-secondary); }
+.dtable tbody tr:nth-child(even) td { background:none; }
+.dtable tbody tr { transition:background .15s; } .dtable tbody tr:hover td { background:color-mix(in srgb, var(--text-primary) 4%, var(--surface-0)); }
+.dtable th { position:relative; } .dtable .rsz { position:absolute; right:-3px; top:0; bottom:0; width:7px; cursor:col-resize; z-index:3; } .dtable .rsz::after { content:''; position:absolute; left:3px; top:25%; bottom:25%; width:1px; background:var(--line-vis); opacity:0; transition:opacity .15s; } .dtable th:hover .rsz::after, body.rszing .rsz::after { opacity:1; }
+body.rszing, body.rszing * { cursor:col-resize !important; user-select:none; }
+.dtable .frz { position:sticky; z-index:2; background:var(--surface-0); } .dtable thead .frz { z-index:4; } .dtable .frz-last { box-shadow:1px 0 0 color-mix(in srgb, var(--text-primary) 14%, transparent), 6px 0 8px -6px rgba(0,0,0,.18); }
+/* pop-ups: flat, soft selects */
+.pop select { -webkit-appearance:none; appearance:none; border:none; background-color:color-mix(in srgb, var(--text-primary) 5%, transparent); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' stroke='%23888' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1l4 4 4-4'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; border-radius:8px; padding:7px 28px 7px 11px; font-size:var(--fs-sm); color:var(--text-primary); cursor:pointer; box-shadow:none; }
+.pop select:hover { background-color:color-mix(in srgb, var(--text-primary) 9%, transparent); } .pop select:focus-visible { outline:2px solid var(--fill-accent); outline-offset:1px; }
+.pop .fr { gap:6px; } .pop .dirbtn { color:var(--text-accent); }
+.lib-tools .fbtn .badge, .ld-find .fbtn .badge { display:none; }
+/* reader: the seek bar takes no focus box */
+#rdSeek, #rdSeek:focus, #rdSeek:focus-visible, .rd-row input[type="range"]:focus-visible { outline:none; box-shadow:none; }
+
+/* ---- round 10: selected rows tint evenly; selects take no focus box ---- */
+.dtable tbody tr.sel td, .dtable tbody tr.sel:nth-child(even) td, .dtable tbody tr.sel:hover td { background:color-mix(in srgb, var(--fill-accent) 13%, var(--surface-0)); }
+.pop select:focus, .pop select:focus-visible, .pop input:focus-visible { outline:none; box-shadow:none; }
+.pop select:focus-visible { background-color:color-mix(in srgb, var(--fill-accent) 12%, transparent); }
+
+/* ---- round 10: soft vertical lines back; Play / Read is a quiet action, not a button; handbook with cards; no focus rings on selecting ---- */
+.dtable th + th, .dtable td + td, .dtable tfoot td + td { border-left:1px solid color-mix(in srgb, var(--text-primary) 11%, transparent); }
+.dtable th.ck + th, .dtable td.ck + td, .dtable th.pick + th, .dtable td.pick + td { border-left:none; }
+.dtable .opn, .drow .opn { background:none; border:none; box-shadow:none; padding:2px 0; height:auto; min-height:0; color:var(--text-accent); font-weight:500; gap:5px; } .dtable .opn:hover { background:none; text-decoration:underline; }
+.pop select:focus, .pop select:focus-visible, .pop input:focus, .pop input:focus-visible, .pop select:active { outline:none; box-shadow:none; }
+.pop select:focus { background-color:color-mix(in srgb, var(--text-primary) 10%, transparent); }
+.dtable tr:focus, .dtable tr:focus-visible, .dtable th:focus-visible, .dtable td:focus-visible, .dtable input:focus-visible { outline:none; box-shadow:none; }
+.dtable .pick input:focus-visible { box-shadow:0 0 0 2px color-mix(in srgb, var(--fill-accent) 30%, transparent); }
+.fbtn:focus-visible, .lib-tools .search input:focus-visible { outline:none; }
+/* handbook cards and flow */
+.hb-cards { display:grid; gap:14px; } .hb-cards.c2 { grid-template-columns:repeat(2, minmax(0,1fr)); } .hb-cards.c3 { grid-template-columns:repeat(3, minmax(0,1fr)); }
+.hb-card { display:flex; gap:14px; align-items:flex-start; padding:16px 18px; border-radius:14px; background:color-mix(in srgb, var(--text-primary) 3.5%, var(--surface-0)); }
+.hb-card b { display:block; font:700 var(--fs-md) var(--font-ui, sans-serif); margin-bottom:3px; } .hbk-slide .hb-card p { font:400 15px/1.5 var(--disp); color:var(--text-secondary); margin:0; max-width:none; }
+.hb-ic { flex:none; display:grid; place-items:center; width:42px; height:42px; border-radius:50%; background:color-mix(in srgb, var(--fill-accent) 14%, var(--surface-0)); color:var(--text-accent); } .hb-ic i { font-size:21px; } .hb-ic.big { width:84px; height:84px; } .hb-ic.big i { font-size:42px; }
+.hb-flow { display:flex; align-items:stretch; gap:10px; margin-top:6px; } .hb-step { flex:1; display:flex; flex-direction:column; align-items:flex-start; gap:8px; padding:18px; border-radius:14px; background:color-mix(in srgb, var(--text-primary) 3.5%, var(--surface-0)); position:relative; }
+.hb-step em { position:absolute; right:14px; top:8px; font:200 44px/1 var(--font-num, var(--font-ui)); font-style:normal; opacity:.25; color:var(--text-accent); } .hbk-slide .hb-step p { font:400 16px/1.5 var(--disp); margin:0; max-width:none; }
+.hb-ar { align-self:center; color:var(--text-muted); font-size:18px; flex:none; }
+.hb-hero { display:flex; align-items:center; gap:28px; margin-top:12px; } .hb-hero p { margin:0; }
+@media (max-width:900px) { .hb-cards.c3 { grid-template-columns:repeat(2, minmax(0,1fr)); } .hb-flow { flex-wrap:wrap; } .hb-ar { display:none; } .hb-step { flex:1 1 40%; } }
+@media (max-width:640px) { .hb-cards.c2, .hb-cards.c3 { grid-template-columns:1fr; } .hb-hero { flex-direction:column; align-items:flex-start; } }
+
+/* ---- round 11: statistics sub-line; the handbook as a flat embedded widget (no gloss, no bubbles, no shadow) ---- */
+.stat-sub { display:flex; gap:10px; flex-wrap:wrap; margin-top:4px; font-size:var(--fs-xs); color:var(--text-muted); } .stat-sub span { display:inline-flex; align-items:center; gap:4px; } .stat-sub i { font-size:13px; }
+.hbk-slide { display:block; background:color-mix(in srgb, var(--text-primary) 3.5%, var(--surface-0)); box-shadow:none; border:none; border-radius:10px; min-height:400px; }
+.hbk-side { display:none; }
+.hbk-slide .hbk-r { padding:26px 32px 50px; }
+.hbk-slide .hbk-r h2 { display:flex; align-items:center; gap:10px; font:600 17px/1.2 var(--font-ui, system-ui, sans-serif); letter-spacing:0; margin:0 0 18px; color:var(--text-primary); }
+.hbk-slide .hbk-r h2::after { display:none; } .hbk-slide .hbk-r h2 i { font-size:19px; color:var(--text-muted); }
+.hbk-pn { right:20px; bottom:14px; }
+.hb-cards { gap:0 36px; } .hb-card { background:none; border-radius:0; padding:12px 0; border-top:1px solid color-mix(in srgb, var(--text-primary) 10%, transparent); gap:12px; }
+.hb-ic, .hb-ic.big { background:none; border-radius:0; width:auto; height:auto; color:var(--text-muted); } .hb-ic i { font-size:19px; } .hb-ic.big i { font-size:44px; }
+.hb-card b { font:600 var(--fs-md) var(--font-ui, sans-serif); } .hbk-slide .hb-card p { font:400 var(--fs-sm)/1.6 var(--font-ui, sans-serif); color:var(--text-secondary); }
+.hb-flow { gap:28px; } .hb-step { background:none; border-radius:0; padding:12px 0 0; border-top:2px solid var(--fill-accent); gap:10px; } .hb-step em { display:none; } .hbk-slide .hb-step p { font:400 var(--fs-sm)/1.6 var(--font-ui, sans-serif); } .hb-ar { display:none; }
+.hbk-slide .hb-dl dd, .hbk-slide p { font:400 var(--fs-md)/1.7 var(--font-ui, sans-serif); color:var(--text-secondary); }
+.hbk-slide .hb-tab tr:nth-child(odd) th, .hbk-slide .hb-tab tr:nth-child(odd) td { background:none; } .hbk-slide .hb-tab th, .hbk-slide .hb-tab td { border-bottom:1px solid color-mix(in srgb, var(--text-primary) 8%, transparent); padding:8px 14px 8px 0; } .hbk-slide .hb-tab th { padding-left:0; font-weight:500; } .hbk-slide .hb-tab td { font:400 var(--fs-sm)/1.5 var(--font-ui, sans-serif); color:var(--text-secondary); }
+.hbk-slide .hb-tab kbd { background:var(--surface-0); color:var(--text-primary); box-shadow:0 1px 0 color-mix(in srgb, var(--text-primary) 25%, transparent); border:none; }
+.hb-hero { gap:20px; }
+@media (max-width:640px) { .hb-cards { gap:0; } }

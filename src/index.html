@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Media Tracker</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.42.0/dist/tabler-icons.min.css" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Nunito:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Ma+Shan+Zheng&family=Jost:wght@200;300;400&family=Noto+Serif+SC:wght@300;400&family=Noto+Serif+JP:wght@300;400&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+<style id="base-css">
+<!--@css base-->
+</style>
+<style id="card-css">
+<!--@css card-->
+</style>
+<style id="app-css">
+<!--@css app-->
+</style>
+<style id="share-css">
+<!--@css share-->
+</style>
+</head>
+<body>
+<div id="bg"><div class="wp" id="wpA"></div><div class="wp" id="wpB"></div><div class="scrim"></div><div class="veil"></div></div>
+<div class="credit" id="credit" role="contentinfo"><span id="creditText"></span></div>
+<div class="app" id="appShell" data-side="hover"><div class="hotzone"></div>
+  <nav class="side" id="side" aria-label="Main">
+    <div class="brand"><i class="ti ti-movie"></i><span data-i18n="brand"></span></div>
+    <button class="nav" data-primary data-tab="home"><i class="ti ti-sun"></i><span data-i18n="nav_home"></span></button>
+    <div class="nav-label" data-i18n="nav_lib_label"></div>
+    <button class="nav" data-primary data-tab="tracker"><i class="ti ti-bookmarks"></i><span data-i18n="nav_tracker"></span><span class="pill" id="pillTracker">0</span></button>
+    <button class="nav" data-primary data-tab="lists"><i class="ti ti-books"></i><span data-i18n="nav_lists"></span></button>
+    <button class="nav" data-primary data-tab="files"><i class="ti ti-database"></i><span data-i18n="nav_files"></span><span class="pill" id="pillFiles">0</span></button>
+    <button class="nav" data-tab="insights"><i class="ti ti-chart-dots-3"></i><span data-i18n="nav_insights"></span></button>
+    <div class="nav-label" data-i18n="nav_assist_label" id="navAiLabel"></div>
+    <button class="nav" data-tab="ask" id="navAsk"><i class="ti ti-sparkles"></i><span data-i18n="nav_ask"></span></button>
+    <div class="nav-label" data-i18n="nav_data_label"></div>
+    <button class="nav" data-tab="import" data-hub="import,export,share,clear"><i class="ti ti-arrows-exchange"></i><span data-i18n="nav_data"></span></button>
+    <div class="spacer"></div>
+    <button class="nav" data-tab="guide"><i class="ti ti-compass"></i><span data-i18n="nav_guide"></span></button>
+    <button class="nav" data-tab="settings"><i class="ti ti-settings"></i><span data-i18n="nav_settings"></span></button>
+    <button class="nav me" data-tab="profile" id="navMe"><span class="me-av" id="meAv"></span><span class="me-txt"><b id="meName"></b><small id="meLv"></small></span></button>
+  </nav>
+  <aside class="mdrawer" id="mDrawer" aria-label="Menu"></aside><div class="mscrim" id="mScrim"></div>
+
+  <main>
+    <div class="banner" id="banner"></div>
+    <div class="container">
+      <button class="menubtn" id="menuBtn" aria-label="Menu" aria-expanded="false"><i class="ti ti-menu-2"></i></button>
+
+      <section class="panel" data-panel="home">
+        <div class="hs hs-hero" data-hs="0">
+          <div class="greet" id="greet" role="heading" aria-level="1"></div>
+          <div class="clock" id="clock"></div>
+          <div class="date" id="date"></div>
+          <blockquote class="quote" id="quote" data-i18n-title="q_tap"><p class="qtext" id="qText"></p><div class="qby" id="qBy"></div></blockquote>
+                    <button class="cue" id="cue"><span data-i18n="scroll"></span><i class="ti ti-chevron-down"></i></button>
+        </div>
+
+        <div class="hs hs-cont" id="hsCont" data-hs="1">
+          <div class="hs-in">
+            <div class="eyebrow rv" data-i18n="ct_eyebrow"></div>
+            <h2 class="sec-title rv" style="--d:1" data-i18n="continue_title"></h2>
+            <p class="sec-sub rv" style="--d:2" id="contSub"></p>
+            <div class="rv" style="--d:3" id="todayBox"></div>
+            <div class="rv" style="--d:3" id="contBox"></div>
+          </div>
+        </div>
+
+        <div class="hs hs-pick" id="hsPick" data-hs="2">
+          <div class="hs-in">
+            <div class="eyebrow rv" data-i18n="pk_eyebrow"></div>
+            <h2 class="sec-title rv" style="--d:1" data-i18n="pick_title"></h2>
+            <p class="sec-sub rv" style="--d:2" data-i18n="pick_desc"></p>
+            <div class="moment glass rv" style="--d:3" id="pkMoment"></div>
+            <div class="oracle rv" style="--d:4"><div class="stage" id="pkStage" aria-live="polite"></div></div>
+          </div>
+        </div>
+
+        <nav class="hdots" id="hdots"><button data-go="0" title="Home"></button><button data-go="1"></button><button data-go="2"></button></nav>
+      </section>
+
+
+      <section class="panel" data-panel="tracker" hidden>
+        <div class="pg-head">
+          <div class="pg-ttl"><div class="pg-ico"><i class="ti ti-bookmarks"></i></div><div><h1 class="page-title" data-i18n="tracker_title"></h1></div></div>
+                  </div>
+        <div class="lib-bar"><div class="lib-tabs" id="libTabs"></div><div class="lib-tools">
+          <button class="fbtn" id="lbFilter" type="button" data-i18n-title="lib_filter" data-i18n-aria="lib_filter"><i class="ti ti-filter"></i><span class="badge" hidden></span></button>
+          <button class="fbtn" id="lbSort" type="button" data-i18n-title="lib_sort" data-i18n-aria="lib_sort"><i class="ti ti-arrows-sort"></i></button>
+          <button class="fbtn" id="lbGroup" type="button" data-i18n-title="lib_group" data-i18n-aria="lib_group"><i class="ti ti-stack-2"></i></button>
+          <button class="fbtn" id="lbProps" type="button" data-i18n-title="lib_properties" data-i18n-aria="lib_properties"><i class="ti ti-columns"></i></button>
+          <span class="tb-grow"></span>
+          <div class="search"><i class="ti ti-search"></i><input type="text" id="qSearch" autocomplete="off" data-i18n-aria="lib_search"></div>
+        </div></div>
+        <div class="activef" id="activeF"></div>
+        <div class="selhint" id="selHint" hidden><i class="ti ti-pointer"></i><span data-i18n="sel_hint"></span><button type="button" class="linkbtn2" data-hint-off="select" data-i18n="hint_off"></button></div>
+        <div id="trackerGrid"></div>
+      </section>
+
+
+      <section class="panel" data-panel="lists" hidden>
+        <div class="pg-head">
+          <div class="pg-ttl"><div class="pg-ico"><i class="ti ti-books"></i></div><div><h1 class="page-title" data-i18n="lp_title"></h1></div></div>
+          <div class="row-btns" id="lpHeadBtns"><button class="btn primary" id="lpNew"><i class="ti ti-plus"></i><span data-i18n="l_new"></span></button><button class="ibtn" id="lpMore" type="button" data-i18n-title="lp_more" data-i18n-aria="lp_more"><i class="ti ti-dots"></i></button></div>
+        </div>
+        <input type="file" id="listPick2" hidden accept="application/json,.json">
+        <div id="lpBody"></div>
+      </section>
+
+      <section class="panel" data-panel="insights" hidden>
+        <div class="pg-head"><div class="pg-ttl"><div class="pg-ico"><i class="ti ti-chart-dots-3"></i></div><div><h1 class="page-title" data-i18n="ins_title"></h1></div></div></div>
+        <div class="ins-bar">
+          <div class="seg" id="insMode"><button data-v="day" data-i18n="p_day"></button><button data-v="month" data-i18n="p_month"></button><button data-v="year" data-i18n="p_year"></button><button data-v="all" data-i18n="p_all"></button></div>
+          <div class="ins-nav" id="insNav"><button type="button" class="ibtn" id="insLabel" data-i18n-aria="ins_pick_date"><i class="ti ti-calendar-event"></i></button></div>
+          <span class="gap"></span>
+          <span class="dt-chip" id="insScopeNote" hidden></span>
+          <button class="btn sm primary" id="insShare" type="button"><i class="ti ti-share-3"></i><span data-i18n="lp_share"></span></button>
+        </div>
+        <div class="ins-sec" style="margin-top:6px"><b>01</b><h2 data-i18n="ins_sec1"></h2><span data-i18n="ins_sec1_s"></span></div>
+        <div id="insReportBox"></div>
+        <div class="ins-sec"><b>02</b><h2 data-i18n="ins_sec2"></h2><span data-i18n="ins_sec2_s"></span></div>
+        <div id="insBoard" class="iw-board"></div>
+      </section>
+
+      <section class="panel" data-panel="profile" hidden>
+        <div class="pg-head">
+          <div class="pg-ttl"><div class="pg-ico"><i class="ti ti-user-circle"></i></div><div><h1 class="page-title" data-i18n="pf_title"></h1></div></div>
+          <div class="row-btns"><button class="btn primary" id="pfShare"><i class="ti ti-share-3"></i><span data-i18n="pf_share"></span></button></div>
+        </div>
+        <input type="file" id="avFile" hidden accept="image/*"><input type="file" id="bdFile" hidden accept="image/*">
+        <div id="pfBody"></div>
+      </section>
+
+      <section class="panel" data-panel="files" hidden>
+        <div class="pg-head"><div class="pg-ttl"><div class="pg-ico"><i class="ti ti-database"></i></div><div><h1 class="page-title" data-i18n="files_title"></h1></div></div></div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-label" data-i18n="stat_total"></div><div class="stat-value" id="sTotal">0</div></div>
+          <div class="stat-card"><div class="stat-label" data-i18n="stat_size"></div><div class="stat-value" id="sSize">0</div></div>
+          <div class="stat-card"><div class="stat-label" data-i18n="stat_duration"></div><div class="stat-value" id="sDur">0</div></div>
+          <div class="stat-card"><div class="stat-label" data-i18n="stat_untagged"></div><div class="stat-value" id="sUntagged">0</div></div>
+          <div class="stat-card"><div class="stat-label" data-i18n="stat_week"></div><div class="stat-value" id="sWeek">0</div><div class="stat-sub" id="sWeekSub"></div></div>
+        </div>
+        <div class="lib-bar"><div class="lib-tabs" id="fTabs"></div><div class="lib-tools">
+          <button class="fbtn" id="fbFilter" type="button" data-i18n-title="lib_filter" data-i18n-aria="lib_filter"><i class="ti ti-filter"></i><span class="badge" hidden></span></button>
+          <button class="fbtn" id="fbSort" type="button" data-i18n-title="lib_sort" data-i18n-aria="lib_sort"><i class="ti ti-arrows-sort"></i></button>
+          <button class="fbtn" id="fbGroup" type="button" data-i18n-title="lib_group" data-i18n-aria="lib_group"><i class="ti ti-stack-2"></i></button>
+          <button class="fbtn" id="fbProps" type="button" data-i18n-title="lib_properties" data-i18n-aria="lib_properties"><i class="ti ti-columns"></i></button>
+          <span class="tb-grow"></span>
+          <div class="search"><i class="ti ti-search"></i><input type="text" id="fSearch" autocomplete="off" data-i18n-aria="lib_search"></div>
+        </div></div>
+        <div class="activef" id="fActive"></div>
+        <div class="selhint" id="fSelHint" hidden><i class="ti ti-pointer"></i><span data-i18n="sel_hint"></span><button type="button" class="linkbtn2" data-hint-off="select" data-i18n="hint_off"></button></div>
+        <div id="fGrid"></div>
+      </section>
+
+
+      <section class="panel" data-panel="import" hidden>
+        <div class="pg-head"><div class="pg-ttl"><div class="pg-ico"><i class="ti ti-upload"></i></div><div><h1 class="page-title" data-i18n="import_title"></h1></div></div></div>
+        <div class="step"><b>1</b><span data-i18n="imp_step1"></span></div>
+        <div class="src-cards" id="impTabs">
+          <button class="src" data-v="csv"><i class="ti ti-table-import"></i><div><b data-i18n="imp_csv"></b><span data-i18n="imp_csv_d"></span></div></button>
+          <button class="src" data-v="video"><i class="ti ti-video"></i><div><b data-i18n="imp_video"></b><span data-i18n="imp_video_d"></span></div></button>
+          <button class="src" data-v="list"><i class="ti ti-users"></i><div><b data-i18n="imp_list"></b><span data-i18n="imp_list_d"></span></div></button>
+          <button class="src" data-v="isbn"><i class="ti ti-barcode"></i><div><b data-i18n="imp_isbn"></b><span data-i18n="imp_isbn_d"></span></div></button>
+          <button class="src" data-v="sync"><i class="ti ti-refresh"></i><div><b data-i18n="imp_sync"></b><span data-i18n="imp_sync_d"></span></div></button>
+          <button class="src" data-v="restore"><i class="ti ti-restore"></i><div><b data-i18n="imp_restore"></b><span data-i18n="imp_restore_d"></span></div></button>
+        </div>
+        <div class="step"><b>2</b><span data-i18n="imp_step2"></span></div>
+
+        <div data-imp="csv">
+          <p class="section-desc" data-i18n="csv_desc"></p>
+          <div class="upload-zone" id="csvDrop" style="padding:30px"><i class="ti ti-file-spreadsheet upload-icon"></i><div class="upload-text" data-i18n="csv_drop"></div><div class="upload-hint" data-i18n="csv_hint"></div><input type="file" id="csvPick" hidden accept=".csv,.tsv,.txt,.json,text/csv,application/json"></div>
+          <div style="margin:12px 0"><details class="more"><summary><i class="ti ti-chevron-right"></i><span data-i18n="csv_paste"></span></summary><div class="in"><textarea class="mono" id="csvText" data-i18n-ph="csv_ph"></textarea><div><button class="btn sm" id="csvParseText"><i class="ti ti-player-play"></i><span data-i18n="csv_parse"></span></button></div></div></details></div>
+          <div id="csvStage"></div>
+        </div>
+
+        <div data-imp="video" hidden>
+          <p class="section-desc" data-i18n="import_desc"></p>
+          <div class="upload-zone" id="drop"><i class="ti ti-cloud-upload upload-icon" aria-hidden="true"></i>
+            <div class="upload-text" data-i18n="drop_text"></div><div class="upload-hint" data-i18n="drop_hint"></div>
+            <input type="file" id="filePick" multiple hidden></div>
+          <div class="dir-box" id="dirBox"></div>
+          <label class="checkline" style="margin-top:14px"><input type="checkbox" id="alsoTrack"><span data-i18n="also_track"></span></label>
+          <div class="bar" id="bar"><i></i></div><div class="log" id="log"></div>
+        </div>
+
+        <div data-imp="list" hidden>
+          <p class="section-desc" data-i18n="list_imp_desc"></p>
+          <button class="btn" id="btnListImp"><i class="ti ti-file-import"></i><span data-i18n="list_imp_btn"></span></button>
+          <input type="file" id="listPick" hidden accept="application/json,.json"><div class="log" id="listLog"></div>
+        </div>
+
+        <div data-imp="isbn" hidden>
+          <p class="section-desc" data-i18n="isbn_desc"></p>
+          <div class="row-btns"><input type="text" id="isbnIn" inputmode="numeric" autocomplete="off" data-i18n-ph="isbn_ph"><button class="btn primary" id="isbnAdd"><i class="ti ti-plus"></i><span data-i18n="isbn_add"></span></button><button class="btn" id="isbnShot"><i class="ti ti-photo"></i><span data-i18n="isbn_photo"></span></button><input type="file" id="isbnPhoto" accept="image/*" capture="environment" hidden><button class="btn" id="isbnScan"><i class="ti ti-barcode"></i><span data-i18n="isbn_scan"></span></button></div>
+          <video id="isbnVid" playsinline muted hidden></video><div class="log" id="isbnLog"></div>
+        </div>
+
+        <div data-imp="sync" hidden>
+          <p class="section-desc" data-i18n="sync_desc"></p>
+          <div class="set-card cloud-card" id="cloudBox"></div>
+          <details class="more" style="margin:12px 0"><summary><i class="ti ti-chevron-right"></i><span data-i18n="sync_other"></span></summary><div class="in">
+            <p class="section-desc" data-i18n="sync_file_d"></p>
+            <div class="row-btns"><button class="btn primary" id="syNow"><i class="ti ti-refresh"></i><span></span></button><button class="btn" id="syForget" hidden><i class="ti ti-unlink"></i><span data-i18n="sync_forget"></span></button><button class="btn" id="sySave"><i class="ti ti-download"></i><span data-i18n="sync_save"></span></button><button class="btn" id="syMerge"><i class="ti ti-file-import"></i><span data-i18n="sync_merge"></span></button></div>
+            <p class="section-desc" style="margin-top:14px"><b data-i18n="sync_cloud"></b> — <span data-i18n="sync_cloud_d"></span></p>
+            <input type="url" id="syUrl" class="jmp-txt" placeholder="https://dav.jianguoyun.com/dav/media-tracker.json" autocomplete="off"><input type="text" id="syUser" class="jmp-txt" data-i18n-ph="sync_user" autocomplete="off" style="margin-top:6px"><input type="password" id="syPw" class="jmp-txt" data-i18n-ph="sync_pw" autocomplete="off" style="margin-top:6px">
+            <div class="row-btns" style="margin-top:8px"><button class="btn primary" id="syDavGo"><i class="ti ti-cloud-upload"></i><span data-i18n="sync_cloud_go"></span></button><button class="btn" id="syDavForget" hidden><i class="ti ti-trash"></i><span data-i18n="sync_dav_forget"></span></button></div></div></details>
+          <input type="file" id="syPick" hidden accept="application/json,.json"><div class="log" id="syLog"></div>
+        </div>
+
+        <div data-imp="restore" hidden>
+          <p class="section-desc" data-i18n="restore_desc"></p>
+          <button class="btn" id="btnRestore"><i class="ti ti-file-import"></i><span data-i18n="restore_btn"></span></button>
+          <input type="file" id="jsonPick" hidden accept="application/json,.json"><div class="log" id="restoreLog"></div>
+        </div>
+      </section>
+
+
+            <section class="panel" data-panel="export" hidden>
+        <div class="pg-head"><div class="pg-ttl"><div class="pg-ico"><i class="ti ti-download"></i></div><div><h1 class="page-title" data-i18n="export_title"></h1></div></div></div>
+        <div class="exgroup" data-i18n="ex_lib"></div>
+        <div class="cards">
+          <div class="card" data-fmt="HTML"><i class="ti ti-table big"></i><h3 data-i18n="exp_l_table"></h3><p data-i18n="exp_l_table_d"></p><button class="btn primary" data-exp="tTable"><i class="ti ti-download"></i><span data-i18n="download"></span></button></div>
+          <div class="card" data-fmt="HTML"><i class="ti ti-layout-grid big"></i><h3 data-i18n="exp_t_html"></h3><p data-i18n="exp_t_html_d"></p><button class="btn" data-exp="tHtml"><i class="ti ti-download"></i><span data-i18n="download"></span></button></div>
+          <div class="card" data-fmt="CSV"><i class="ti ti-file-spreadsheet big"></i><h3 data-i18n="exp_t_csv"></h3><p data-i18n="exp_t_csv_d"></p><button class="btn" data-exp="tCsv"><i class="ti ti-download"></i><span data-i18n="download"></span></button></div>
+        </div>
+        <div class="exgroup" data-i18n="ex_files"></div>
+        <div class="cards">
+          <div class="card" data-fmt="HTML"><i class="ti ti-table big"></i><h3 data-i18n="exp_f_html"></h3><p data-i18n="exp_f_html_d"></p><button class="btn" data-exp="fHtml"><i class="ti ti-download"></i><span data-i18n="download"></span></button></div>
+          <div class="card" data-fmt="CSV"><i class="ti ti-file-spreadsheet big"></i><h3 data-i18n="exp_f_csv"></h3><p data-i18n="exp_f_csv_d"></p><button class="btn" data-exp="fCsv"><i class="ti ti-download"></i><span data-i18n="download"></span></button></div>
+        </div>
+        <div class="exgroup" data-i18n="ex_backup"></div>
+        <div class="cards">
+          <div class="card" data-fmt="JSON"><i class="ti ti-file-json big"></i><h3 data-i18n="exp_json"></h3><p data-i18n="exp_json_d"></p><button class="btn primary" data-exp="json"><i class="ti ti-download"></i><span data-i18n="download"></span></button></div>
+          <div class="card" data-fmt="JSON"><i class="ti ti-file-import big"></i><h3 data-i18n="ex_restore_t"></h3><p data-i18n="ex_restore_d"></p><button class="btn" data-goto="import" data-restore="1"><i class="ti ti-upload"></i><span data-i18n="ex_restore_b"></span></button></div>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="share" hidden>
+        <div class="pg-head"><div class="pg-ttl"><div class="pg-ico"><i class="ti ti-share-3"></i></div><div><h1 class="page-title" data-i18n="share_title"></h1></div></div></div>
+        <div class="cards">
+          <div class="card" data-fmt="LIST"><i class="ti ti-users big"></i><h3 data-i18n="exp_list"></h3><p data-i18n="exp_list_d"></p><select id="exList"></select><button class="btn primary" data-exp="lShare"><i class="ti ti-share-3"></i><span data-i18n="lp_share"></span></button></div>
+          <div class="card" data-fmt="CARD"><i class="ti ti-user-circle big"></i><h3 data-i18n="sh_profile_t"></h3><p data-i18n="sh_profile_d"></p><button class="btn primary" data-sharego="profile"><i class="ti ti-share-3"></i><span data-i18n="lp_share"></span></button></div>
+          <div class="card" data-fmt="CARD"><i class="ti ti-chart-dots-3 big"></i><h3 data-i18n="sh_ins_t"></h3><p data-i18n="sh_ins_d"></p><button class="btn primary" data-sharego="insights"><i class="ti ti-share-3"></i><span data-i18n="lp_share"></span></button></div>
+          <div class="card" data-fmt="CARD"><i class="ti ti-award big"></i><h3 data-i18n="sh_badges_t"></h3><p data-i18n="sh_badges_d"></p><button class="btn primary" data-sharego="badges"><i class="ti ti-share-3"></i><span data-i18n="lp_share"></span></button></div>
+        </div>
+      </section>
+
+
+
+      <section class="panel" data-panel="clear" hidden>
+        <div class="pg-head"><div class="pg-ttl"><div class="pg-ico"><i class="ti ti-alert-triangle"></i></div><div><h1 class="page-title" data-i18n="clear_title"></h1></div></div><button class="btn" data-goto="export"><i class="ti ti-download"></i><span data-i18n="clear_backup"></span></button></div>
+        <label class="ack"><input type="checkbox" id="clearOk"><span data-i18n="clear_ack"></span></label>
+        <div class="cards">
+          <div class="card danger-card"><i class="ti ti-bookmarks big"></i><h3 data-i18n="clear_tracker"></h3><p id="clearTrackerD"></p><button class="btn danger solid" data-clear="media"><i class="ti ti-trash"></i><span data-i18n="clear_btn"></span></button></div>
+          <div class="card danger-card"><i class="ti ti-database big"></i><h3 data-i18n="clear_files"></h3><p id="clearFilesD"></p><button class="btn danger solid" data-clear="videos"><i class="ti ti-trash"></i><span data-i18n="clear_btn"></span></button></div>
+          <div class="card"><i class="ti ti-photo-off big"></i><h3 data-i18n="clear_thumbs"></h3><p data-i18n="clear_thumbs_d"></p><button class="btn danger" data-clear="thumbs"><i class="ti ti-photo-off"></i><span data-i18n="clear_thumbs_btn"></span></button></div>
+        </div>
+      </section>
+
+
+      <section class="panel" data-panel="ask" hidden>
+        <div class="pg-head">
+          <div class="pg-ttl"><div class="pg-ico"><i class="ti ti-sparkles"></i></div><div><h1 class="page-title" data-i18n="ask_title"></h1></div></div>
+          <div class="row-btns"><span class="modebadge" id="askMode"></span><button class="btn" id="askClear"><i class="ti ti-eraser"></i><span data-i18n="ask_clear"></span></button><button class="btn" data-goto="guide" data-guide="ai"><i class="ti ti-compass"></i><span data-i18n="ask_how"></span></button></div>
+        </div>
+        <div class="ask-wrap">
+          <section class="ask-chat glass"><div class="ask-msgs" id="askMsgs" aria-live="polite"></div>
+            <div class="ask-chips" id="askChips"></div>
+            <form class="ask-in" id="askForm" autocomplete="off"><input type="text" id="askInput" data-i18n-ph="ask_ph" aria-label="Ask"><button class="btn primary" type="submit"><i class="ti ti-send"></i><span data-i18n="ask_send"></span></button></form>
+          </section>
+          <aside class="ask-side">
+            <div class="set-card"><h3 aria-level="2"><i class="ti ti-bulb"></i><span data-i18n="ask_can"></span></h3><ul class="ask-can" id="askCan"></ul></div>
+            <div class="set-card"><h3 aria-level="2"><i class="ti ti-lock"></i><span data-i18n="ask_privacy"></span></h3><p class="section-desc" id="askPriv"></p><button class="btn sm" data-goto="settings" data-setsec="ai"><i class="ti ti-settings"></i><span data-i18n="ask_settings"></span></button></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="panel" data-panel="guide" hidden>
+        <div class="pg-head">
+          <div class="pg-ttl"><div class="pg-ico"><i class="ti ti-compass"></i></div><div><h1 class="page-title" data-i18n="guide_title"></h1></div></div>
+          <div class="row-btns"><button class="btn" id="guideTour"><i class="ti ti-player-play"></i><span data-i18n="guide_tour"></span></button><button class="btn primary" id="guideSample"><i class="ti ti-wand"></i><span data-i18n="guide_sample"></span></button></div>
+        </div>
+        <div id="guideBody"></div>
+      </section>
+
+      <section class="panel" data-panel="settings" data-lv="list" hidden>
+        <div class="set-top" id="setTop"><button class="set-back" id="setBack" type="button" aria-label="Back"><i class="ti ti-chevron-left"></i></button><h1 id="setTopTitle"></h1></div>
+        <div class="pg-head only-wide"><div class="pg-ttl"><div class="pg-ico"><i class="ti ti-settings"></i></div><div><h1 class="page-title" data-i18n="settings_title"></h1></div></div></div>
+        <button class="set-prof" id="setProf" type="button" data-goto="profile"></button>
+        <div class="set-list" id="setList"></div>
+        <div class="set-layout">
+          <nav class="set-nav" id="setNav">
+            <button data-sec="general"><i class="ti ti-adjustments"></i><span data-i18n="ss_general"></span></button>
+            <button data-sec="appearance"><i class="ti ti-palette"></i><span data-i18n="ss_appearance"></span></button>
+            <button data-sec="library"><i class="ti ti-table"></i><span data-i18n="ss_library"></span></button>
+            <button data-sec="insights"><i class="ti ti-chart-dots-3"></i><span data-i18n="ss_layouts"></span></button>
+            <button data-sec="badges"><i class="ti ti-award"></i><span data-i18n="ss_badges"></span></button>
+            <button data-sec="ai"><i class="ti ti-sparkles"></i><span data-i18n="ss_ai"></span></button>
+            <button data-sec="plugins"><i class="ti ti-puzzle"></i><span data-i18n="ss_plugins"></span></button>
+          </nav>
+          <div class="set-body">
+            <div class="set-sec" data-sec="general">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-language"></i><span data-i18n="sg_general"></span></h3>
+                <div class="row"><label data-i18n="set_lang"></label><div class="seg" id="segLang"><button data-v="en">English</button><button data-v="zh">中文</button></div></div>
+                <div class="row"><label data-i18n="set_start"></label><div class="seg" id="segStart"><button data-v="home" data-i18n="nav_home"></button><button data-v="tracker" data-i18n="nav_tracker"></button><button data-v="ask" data-i18n="nav_ask"></button></div></div></div>
+              
+            </div>
+            <div class="set-sec" data-sec="appearance">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-palette"></i><span data-i18n="sg_look"></span></h3>
+                <div class="row"><label data-i18n="set_theme"></label><div class="seg" id="segTheme"><button data-v="auto" data-i18n="theme_auto"></button><button data-v="light" data-i18n="theme_light"></button><button data-v="dark" data-i18n="theme_dark"></button></div></div>
+                <div class="row only-wide"><label data-i18n="set_side"></label><div class="seg" id="segSide"><button data-v="fixed" data-i18n="side_fixed"></button><button data-v="hover" data-i18n="side_hover"></button><button data-v="rail" data-i18n="side_rail"></button><button data-v="auto" data-i18n="side_auto"></button><button data-v="scroll" data-i18n="side_scroll"></button></div></div>
+                <div class="row"><label data-i18n="set_size"></label><div class="seg" id="segSize"><button data-v="s" data-i18n="size_s"></button><button data-v="m" data-i18n="size_m"></button><button data-v="l" data-i18n="size_l"></button><button data-v="xl" data-i18n="size_xl"></button></div></div></div>
+            </div>
+            <div class="set-sec" data-sec="colors">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-color-swatch"></i><span data-i18n="ap_accent"></span></h3><p class="section-desc" data-i18n="ap_accent_d"></p><div id="acSrc"></div><div id="acBody"></div></div>
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-photo"></i><span data-i18n="ap_skin"></span></h3><p class="section-desc" data-i18n="ap_skin_d"></p><div id="skSrc"></div><div id="skBody"></div></div>
+              <input type="file" id="acFile" hidden accept="image/*"><input type="file" id="skFile" hidden accept="image/*">
+            </div>
+            <div class="set-sec" data-sec="fonts">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-typography"></i><span data-i18n="sg_fonts"></span></h3><p class="section-desc" data-i18n="ap_font_d"></p><div id="fnSrc"></div><div id="fnBody"></div></div>
+              <input type="file" id="fontFile" hidden accept=".ttf,.otf,.woff,.woff2">
+            </div>
+            <div class="set-sec" data-sec="icons">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-icons"></i><span data-i18n="ss_icons"></span></h3><p class="section-desc" data-i18n="ap_icon_d"></p><div id="icList"></div><div style="margin-top:14px"><button class="btn sm" id="icReset" type="button"><i class="ti ti-restore"></i><span data-i18n="ap_reset_all"></span></button></div></div>
+              <input type="file" id="icFile" hidden accept="image/*">
+            </div>
+            <div class="set-sec only-bar" data-sec="tabbar">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-layout-bottombar"></i><span data-i18n="ss_tabbar"></span></h3><p class="section-desc" data-i18n="tb_desc"></p>
+                <div class="tb-preview" id="tbPreview"></div>
+                <div class="tb-lbl" data-i18n="tb_enabled"></div><div class="tb-list" id="tbOn"></div>
+                <div class="tb-lbl" data-i18n="tb_disabled"></div><div class="tb-list" id="tbOff"></div>
+                <div class="row"><label data-i18n="tb_max"></label><div class="seg" id="tbMax"><button data-v="3">3</button><button data-v="4">4</button><button data-v="5">5</button></div></div>
+                <p class="section-desc" data-i18n="tb_over"></p>
+                <div><button class="btn sm" id="tbReset"><i class="ti ti-restore"></i><span data-i18n="tb_reset"></span></button></div></div>
+            </div>
+            <div class="set-sec" data-sec="badges">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-award"></i><span data-i18n="ss_badges"></span></h3><p class="section-desc" data-i18n="bs_desc"></p>
+                <div class="row"><label data-i18n="bs_style"></label><div class="vseg" id="bdStyle"><button type="button" data-v="gen" data-i18n="pf_bs_gen"></button><button type="button" data-v="art" data-i18n="pf_bs_art"></button></div></div>
+                <div class="bs-grid" id="bsGrid"></div></div>
+            </div>
+            <div class="set-sec" data-sec="home">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-clock"></i><span data-i18n="sg_home"></span></h3>
+                <div class="row"><label data-i18n="set_clock"></label><div class="seg" id="segClock"><button data-v="24">24h</button><button data-v="12">12h</button></div></div>
+                <div class="row"><label data-i18n="set_rot"></label><div class="seg" id="segRot"><button data-v="10" data-i18n="rot_10"></button><button data-v="20" data-i18n="rot_20"></button><button data-v="60" data-i18n="rot_60"></button></div></div></div>
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-sparkles"></i><span data-i18n="sg_surprise"></span></h3>
+                <div class="row"><label data-i18n="set_pk_auto"></label><div class="seg" id="segPkAuto"><button data-v="1" data-i18n="opt_on"></button><button data-v="0" data-i18n="opt_off"></button></div></div>
+                <div class="row"><label data-i18n="pk_strict"></label><div class="seg" id="segPkStrict"><button data-v="1" data-i18n="pk_strict_1"></button><button data-v="2" data-i18n="pk_strict_2"></button><button data-v="3" data-i18n="pk_strict_3"></button></div></div></div>
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-photo"></i><span data-i18n="set_wp"></span></h3>
+                <div class="seg" id="segWp"><button data-v="auto" data-i18n="wp_auto"></button><button data-v="fixed" data-i18n="wp_fixed"></button><button data-v="off" data-i18n="wp_off"></button></div>
+                <div id="wpFixedBox" hidden><div class="gal" id="gal"></div></div></div>
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-quote"></i><span data-i18n="myq_title"></span></h3><p class="section-desc" data-i18n="myq_desc"></p>
+                <textarea class="mono" id="myQ" data-i18n-ph="myq_ph"></textarea>
+                <div style="margin-top:10px"><button class="btn" id="btnSaveQ"><i class="ti ti-device-floppy"></i><span data-i18n="myq_save"></span></button></div></div>
+            </div>
+            <div class="set-sec" data-sec="features">
+              <div class="set-card"><div class="sw-head"><h3><i class="ti ti-toggle-right"></i><span data-i18n="sg_features"></span></h3><div class="sw-master"><button class="btn sm" id="swAllOn"><i class="ti ti-toggle-right"></i><span data-i18n="sw_all_on"></span></button><button class="btn sm" id="swAllOff"><i class="ti ti-toggle-left"></i><span data-i18n="sw_all_off"></span></button></div></div>
+                <p class="section-desc" data-i18n="sg_features_d"></p><div id="swList" class="sw-list"></div></div>
+            </div>
+            <div class="set-sec" data-sec="views">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-table"></i><span data-i18n="lib_views"></span></h3><p class="section-desc" data-i18n="lib_views_desc"></p><div id="lsViews"></div></div>
+            </div>
+            <div class="set-sec" data-sec="data">
+              <div class="set-card dbhead"><h3><i class="ti ti-database-cog"></i><span data-i18n="ss_data"></span></h3><p class="section-desc" data-i18n="dp_desc"></p><div class="dparts seg" id="dataParts" role="tablist"><button type="button" role="tab" data-part="props" data-i18n="dp_props"></button><button type="button" role="tab" data-part="entry" data-i18n="dp_entry"></button><button type="button" role="tab" data-part="types" data-i18n="dp_types"></button><button type="button" role="tab" data-part="tags" data-i18n="dp_tags"></button></div></div>
+              <div class="dpart" data-part="props"><div class="set-card"><h3 aria-level="2"><i class="ti ti-list-details"></i><span data-i18n="lib_properties"></span></h3><p class="section-desc" data-i18n="lib_props_desc"></p><div id="lsProps"></div></div></div>
+              <div class="dpart" data-part="entry">
+                <div class="set-card"><h3 aria-level="2"><i class="ti ti-forms"></i><span data-i18n="ss_entry"></span></h3><p class="section-desc" data-i18n="en_desc"></p><div class="tpl-pick" id="entryTpl" role="radiogroup"></div></div>
+                <div class="set-card" id="enArrange"><h3><i class="ti ti-arrows-sort"></i><span data-i18n="en_arrange"></span></h3><p class="section-desc" id="enArrangeD"></p><div id="lsEntry"></div></div>
+              </div>
+              <div class="dpart" data-part="types"><div class="set-card"><h3 aria-level="2"><i class="ti ti-category-2"></i><span data-i18n="tm_tab_types"></span></h3><p class="section-desc" data-i18n="tm_types_desc"></p><div id="lsTypes"></div></div></div>
+              <div class="dpart" data-part="tags"><div class="set-card"><h3 aria-level="2"><i class="ti ti-tags"></i><span data-i18n="tm_tab_tags"></span></h3><p class="section-desc" data-i18n="tm_tags_desc"></p><div id="lsTags"></div></div></div>
+            </div>
+            <div class="set-sec" data-sec="layouts">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-filter"></i><span data-i18n="ins_scope_h"></span></h3><p class="section-desc" data-i18n="ins_scope_d"></p><label class="fld"><select id="leScope" data-i18n-aria="ins_scope"></select></label></div>
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-layout-dashboard"></i><span data-i18n="ins_layouts"></span></h3><p class="section-desc" data-i18n="ins_layouts_desc"></p><div id="lsLayouts"></div></div>
+              <div class="set-card" id="leCard" hidden><div class="le-head"><h3><i class="ti ti-chart-dots-3"></i><span id="leTitle"></span></h3><button class="btn sm" type="button" id="lePreviewBtn"><i class="ti ti-eye"></i><span data-i18n="ins_preview"></span></button></div>
+                <p class="section-desc" data-i18n="ins_edit_desc"></p>
+                <div class="le-grid"><div class="le-side"><div id="lsWidgets"></div><div class="le-foot"><button class="btn sm" type="button" id="leAdd"><i class="ti ti-plus"></i><span data-i18n="ins_add_w"></span></button><label class="pace"><span data-i18n="ins_pace"></span><input type="number" id="lePace" min="5" max="400" step="5"></label></div></div>
+                  <div class="le-prev"><div class="le-prev-h"><i class="ti ti-layout-grid"></i><span data-i18n="ins_map"></span><small data-i18n="ins_map_note"></small></div><div class="le-map" id="lePrev"></div></div></div>
+              </div>
+            </div>
+            <div class="set-sec" data-sec="ai">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-sparkles"></i><span data-i18n="sg_ai"></span></h3><p class="section-desc" data-i18n="sg_ai_d"></p>
+                <div class="aimodes" id="aiModes"></div></div>
+              <div class="set-card" id="aiClaudeCard"><h3><i class="ti ti-key"></i><span data-i18n="sg_ai_key"></span></h3>
+                <label class="fld"><span data-i18n="ai_key"></span><div class="keyrow"><input type="password" id="aiKey" autocomplete="off" spellcheck="false" placeholder="sk-ant-…"><button class="btn sm" type="button" id="aiKeyShow" aria-pressed="false" data-i18n-aria="ai_key_show"><i class="ti ti-eye-off"></i></button></div></label>
+                <label class="fld" style="margin-top:12px"><span data-i18n="ai_model"></span><select id="aiModel"></select></label>
+                <div class="row-btns" style="margin-top:14px"><button class="btn primary" id="aiTest"><i class="ti ti-plug-connected"></i><span data-i18n="ai_test"></span></button><button class="btn danger" id="aiForget"><i class="ti ti-trash"></i><span data-i18n="ai_forget"></span></button><span class="ai-test" id="aiTestOut"></span></div>
+                <ul class="ai-facts" id="aiFacts"></ul></div>
+            </div>
+
+            <div class="set-sec" data-sec="plugins">
+              <p class="section-desc" data-i18n="packs_desc"></p>
+              <input type="file" id="packFile" hidden multiple accept=".json,application/json"><input type="file" id="packDir" hidden webkitdirectory multiple><input type="file" id="wpFile" accept="image/*" multiple hidden>
+              <div id="packsBody"></div>
+            </div>
+            <div class="set-sec" data-sec="system">
+              <div class="set-card"><h3 aria-level="2"><i class="ti ti-heart-rate-monitor"></i><span data-i18n="sc_title"></span></h3><p class="section-desc" data-i18n="sc_desc"></p>
+                <button class="btn" id="btnCheck"><i class="ti ti-player-play"></i><span data-i18n="sc_run"></span></button><div class="checks" id="checks"></div></div>
+              
+              <div class="fineprint" id="setNote"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<dialog id="welcome" data-i18n-aria="brand"><div class="wl">
+  <div class="wl-dots" id="wlDots"></div>
+  <div class="wl-body" id="wlBody"></div>
+  <div class="wl-foot"><button class="btn" type="button" id="wlSkip" data-i18n="wl_skip"></button><span class="sp"></span><button class="btn" type="button" id="wlBack" data-i18n="prev"></button><button class="btn primary" type="button" id="wlNext" data-i18n="next"></button></div>
+</div></dialog>
+
+<!-- Tracker item drawer -->
+<dialog class="drawer" id="mdlg" aria-labelledby="mTitleH"><form id="mform" style="display:contents">
+  <div class="dw-head"><div class="t"><span id="mTitleH"></span><small id="mPos"></small></div><button class="heartbtn" type="button" id="mFav" aria-pressed="false" data-i18n-title="fav_toggle"><i class="ti ti-heart"></i></button><button class="btn sm" type="button" id="mPrev" data-i18n-title="prev"><i class="ti ti-chevron-left"></i></button><button class="btn sm" type="button" id="mNext" data-i18n-title="next"><i class="ti ti-chevron-right"></i></button><button class="btn sm" type="button" id="mX" data-i18n-aria="sh_close"><i class="ti ti-x"></i></button></div>
+  <div class="dw-body">
+    <div class="heroedit"><div id="mPoster"></div><div class="stack">
+      <label class="fld"><span data-i18n="m_title"></span><input class="big" type="text" name="title" required autocomplete="off"></label>
+      <label class="fld"><span data-i18n="m_alt"></span><input type="text" name="alt" autocomplete="off"></label>
+    </div></div>
+    <div class="np-head"><b data-i18n="np_props"></b><button type="button" class="linkbtn2" id="npArrange"><i class="ti ti-settings"></i><span data-i18n="np_arrange"></span></button></div>
+    <div class="np-list" id="npList"></div>
+    <label class="fld"><span data-i18n="m_notes"></span><textarea name="notes" rows="5"></textarea></label>
+    <div id="mProps" hidden></div>
+    <div id="npPool" hidden>
+      <div class="fld" data-prop="type"><span data-i18n="f_type"></span><div class="iconchips" id="mTypes"></div></div>
+      <div class="fld" data-prop="status"><span data-i18n="m_status"></span><div class="iconchips" id="mStatus"></div></div>
+      <div class="fld" data-prop="rating"><span data-i18n="m_rating"></span><div class="rate" id="mRate"></div></div>
+      <label class="fld" data-prop="year"><span data-i18n="f_year"></span><input type="number" name="year" min="-3000" max="2100"></label>
+      <label class="fld" data-prop="runtime"><span data-i18n="f_runtime"></span><input type="number" name="runtime" min="0" max="9999" data-i18n-ph="ph_min"></label>
+      <label class="fld" data-prop="pages"><span></span><input type="number" name="pages" min="0" max="99999"></label>
+      <label class="fld" data-prop="language"><span data-i18n="f_lang"></span><select name="language" class="langsel"></select></label>
+      <label class="fld" data-prop="progress"><span data-i18n="m_progress"></span><input type="text" name="progress" autocomplete="off"></label>
+      <label class="fld" data-prop="creator"><span data-i18n="m_creator"></span><input type="text" name="creator" autocomplete="off"></label>
+      <label class="fld" data-prop="cast"><span data-i18n="f_cast"></span><input type="text" name="cast" autocomplete="off"></label>
+      <label class="fld" data-prop="writers"><span data-i18n="f_writers"></span><input type="text" name="writers" autocomplete="off"></label>
+      <label class="fld" data-prop="producers"><span data-i18n="f_producers"></span><input type="text" name="producers" autocomplete="off"></label>
+      <div class="fld" data-prop="genre"><span data-i18n="tags_label"></span><div id="mTags"></div></div>
+      <div class="fld" data-prop="lists"><span data-i18n="lists_label"></span><div class="chipset" id="mLists"></div></div>
+      <label class="fld" data-prop="cover"><span data-i18n="m_cover"></span><input type="url" name="cover" placeholder="https://…"></label>
+    </div>
+  </div>
+  <div class="dw-foot"><button class="btn danger sm" type="button" id="mDelete" data-i18n-aria="del"><i class="ti ti-trash"></i></button><button class="btn" type="button" id="mOpen" hidden><i class="ti ti-player-play"></i><span></span></button><span class="sp"></span><span style="font-size:11px;color:var(--text-muted)" data-i18n="kbd_hint"></span><button class="btn" type="submit" value="savenext" id="mSaveNext" data-i18n="save_next"></button><button class="btn primary" type="submit" value="save" data-i18n="save"></button></div>
+</form></dialog>
+
+<!-- File edit drawer -->
+<dialog class="drawer" id="dlg" aria-labelledby="fTitleH"><form id="form" style="display:contents">
+  <div class="dw-head"><div class="t"><span id="fTitleH" data-i18n="edit_title"></span><small id="fPos"></small></div><button class="btn sm" type="button" id="fPrev" data-i18n-aria="prev"><i class="ti ti-chevron-left"></i></button><button class="btn sm" type="button" id="fNext" data-i18n-aria="next"><i class="ti ti-chevron-right"></i></button><button class="btn sm" type="button" id="fX" data-i18n-aria="cancel"><i class="ti ti-x"></i></button></div>
+  <div class="dw-body">
+    <div class="fi-card" id="fInfo"></div>
+    <div class="np-list">
+      <div class="np-row"><label class="fld"><span data-i18n="fd_title"></span><input class="big" type="text" name="title" autocomplete="off"></label></div>
+      <div class="np-row"><label class="fld"><span data-i18n="fd_creator"></span><input type="text" name="director" autocomplete="off"></label></div>
+      <div class="np-row"><div class="fld"><span data-i18n="f_kind"></span><div class="iconchips" id="fKinds"></div></div></div>
+      <div class="np-row"><div class="fld"><span data-i18n="tags_label"></span><div id="fTags"></div></div></div>
+      <div class="np-row"><label class="fld"><span data-i18n="f_year"></span><input type="number" name="year" min="0" max="2100"></label></div>
+      <div class="np-row"><label class="fld"><span data-i18n="f_lang"></span><select name="language" class="langsel"></select></label></div>
+      <div class="np-row"><label class="fld"><span data-i18n="f_desc"></span><textarea name="description" rows="3"></textarea></label></div>
+    </div>
+    <div class="np-head"><b data-i18n="fd_file"></b></div>
+    <div class="np-list" id="fMeta"></div>
+  </div>
+  <div class="dw-foot"><button class="btn danger" type="button" id="fDel"><i class="ti ti-trash"></i><span data-i18n="del"></span></button><button class="btn" type="button" id="fTrack"><i class="ti ti-bookmark-plus"></i><span data-i18n="fd_track"></span></button><span class="sp"></span><button class="btn" type="button" id="fPlay"><i class="ti ti-player-play"></i><span></span></button><button class="btn" type="submit" value="savenext" data-i18n="save_next"></button><button class="btn primary" type="submit" value="save" data-i18n="save"></button></div>
+</form></dialog>
+
+<!-- Bulk edit drawer -->
+<dialog class="drawer" id="bpage" aria-labelledby="bpTitle"><div style="display:contents">
+  <div class="dw-head"><div class="t" id="bpTitle"></div><button class="btn sm" type="button" id="bpX" data-i18n-aria="sh_close"><i class="ti ti-x"></i></button></div>
+  <div class="dw-body" id="bpBody"></div>
+</div></dialog>
+<dialog class="drawer" id="bdlg" aria-labelledby="bTitle"><form id="bform" style="display:contents">
+  <div class="dw-head"><div class="t" id="bTitle"></div><button class="btn sm" type="button" id="bX" data-i18n-aria="sh_close"><i class="ti ti-x"></i></button></div>
+  <div class="dw-body" id="bBody"></div>
+  <div class="dw-foot"><span class="sp"></span><button class="btn" type="button" id="bCancel" data-i18n="cancel"></button><button class="btn primary" type="submit" data-i18n="apply"></button></div>
+</form></dialog>
+
+<dialog id="ldlg" aria-labelledby="lTitle"><form id="lform" style="display:contents">
+  <div class="modal-header" id="lTitle" style="font-size:18px;font-weight:600;margin-bottom:18px"></div>
+  <div class="fgrid" style="grid-template-columns:1fr">
+    <label class="fld"><span data-i18n="l_name"></span><input type="text" name="name" required autocomplete="off" maxlength="60"></label>
+    <label class="fld"><span data-i18n="l_desc"></span><textarea name="desc" rows="2" maxlength="300"></textarea></label>
+    <div class="fld"><span data-i18n="l_color"></span><div id="lColors"></div></div>
+    <div class="fld"><span data-i18n="l_cover"></span><div id="lCoverTabs"></div><div id="lCoverBody"></div><input type="file" id="lCoverFile" hidden accept="image/*"></div>
+  </div>
+  <div class="modal-actions" style="display:flex;gap:10px;margin-top:22px"><button class="btn danger" type="button" id="lDelete" data-i18n="del"></button><span style="flex:1"></span><button class="btn" type="button" id="lCancel" data-i18n="cancel"></button><button class="btn primary" type="submit" data-i18n="save"></button></div>
+</form></dialog>
+<dialog id="adlg" aria-labelledby="aTitle"><form id="aform" style="display:contents">
+  <div class="modal-header" id="aTitle" style="font-size:18px;font-weight:600"></div>
+  <input type="text" id="aSearch" autocomplete="off" data-i18n-ph="ad_search" style="width:100%">
+  <div class="alist" id="aList"></div>
+  <div class="modal-actions" style="display:flex;gap:10px;margin-top:16px"><span style="flex:1"></span><button class="btn" type="button" id="aCancel" data-i18n="cancel"></button><button class="btn primary" type="submit" id="aOk"></button></div>
+</form></dialog>
+<dialog class="wide" id="sdlg" aria-labelledby="shTitle"><div class="sh">
+  <div class="sh-head"><div class="t" id="shTitle"></div><button class="btn sm" type="button" id="shX" data-i18n-aria="sh_close"><i class="ti ti-x"></i></button></div>
+  <div class="sh-pane only-bar"><div class="seg" id="shPane"><button type="button" data-v="prev" data-i18n="sh_preview"></button><button type="button" data-v="opts" data-i18n="sh_customize"></button></div></div>
+  <div class="sh-body"><aside class="sh-opts" id="shOpts"></aside><section class="sh-prev"><div class="sh-hint"><i class="ti ti-pencil"></i><span id="shHint"></span></div><div class="sh-stage"><div class="sc" id="shCard"></div></div></section></div>
+  <div class="sh-foot" id="shFoot"></div>
+</div></dialog>
+<dialog id="optdlg" aria-labelledby="oeTitle"><div class="oe"><div class="oe-h"><b id="oeTitle"></b><button class="btn sm" type="button" id="oeX" data-i18n-aria="sh_close"><i class="ti ti-x"></i></button></div><div id="oeBody"></div></div></dialog>
+<datalist id="tagList"></datalist>
+<div class="selbar" id="selbar"></div>
+<div class="sr-only" id="srLive" role="status" aria-live="polite"></div>
+<div class="toast" id="toast" role="status"><i class="ti ti-check"></i><span id="toastText"></span><button type="button" class="toast-undo" id="toastUndo" hidden></button></div>
+
+<script>
+<!--@js-->
+</script>
+</body>
+</html>

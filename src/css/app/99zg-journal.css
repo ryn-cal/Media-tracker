@@ -1,0 +1,96 @@
+/* The guide (js/25b-guide.js): five short pages, one at a time. A thin veil with feathered edges lets the wallpaper show through the way it does
+   behind the home page's text; the one way through is the numbered index beside it, and the arrow keys. Every colour comes from the system
+   accent (--fill-accent), the same one the header's buttons use. Inside: Cormorant headings, hairline rows, the app's single accent; a name that leads somewhere is itself the link.
+   Questions are bold serif; answers are italic (a brush face in Chinese). A page turns with a short slide; reduced motion turns it off. */
+.gd { --disp:"Cormorant Garamond",var(--fd),Georgia,"Noto Serif SC",serif; --kai:"Kaiti SC","STKaiti","KaiTi","Noto Serif SC",serif; max-width:1000px; margin:0 0 50px; color:var(--text-primary); display:grid; grid-template-columns:118px minmax(0,1fr); gap:clamp(18px,3vw,34px); align-items:start;
+  --text-accent:color-mix(in srgb, var(--fill-accent) 86%, var(--text-primary)); --bg-accent:color-mix(in srgb, var(--fill-accent) 20%, transparent); --border-accent:color-mix(in srgb, var(--fill-accent) 55%, transparent); }
+.gd h2, .gd h3, .gd p, .gd dl, .gd dd, .gd dt, .gd ul, .gd ol { margin:0; }
+.gd h2, .gd h3 { font-weight:inherit; color:var(--text-primary); }
+.gd button { font-family:inherit; }
+
+/* the way through: a numbered index beside the page; the current number fills in the app's accent */
+.gd-rail { position:sticky; top:18px; display:flex; flex-direction:column; margin-top:6px; }
+.gd-rail button { display:block; padding:12px 0 11px; border:none; border-bottom:.5px solid var(--border-strong); background:none; text-align:left; cursor:pointer; color:var(--text-primary); }
+.gd-rail button:first-child { border-top:.5px solid var(--border-strong); }
+.gd-rail b { display:block; font:500 42px/1 var(--disp); color:transparent; -webkit-text-stroke:1px var(--text-secondary); letter-spacing:-.02em; transition:color .4s var(--ease), -webkit-text-stroke-color .3s, transform .45s var(--ease); transform-origin:left center; }
+.gd-rail span { display:block; margin-top:5px; font-size:var(--fs-2xs); letter-spacing:.24em; text-transform:uppercase; color:var(--text-muted); transition:color .3s; }
+.gd-rail button:hover b { -webkit-text-stroke-color:var(--fill-accent); transform:translateX(3px); } .gd-rail button:hover span { color:var(--text-primary); }
+.gd-rail button[aria-current] b { color:var(--fill-accent); -webkit-text-stroke-color:var(--fill-accent); } .gd-rail button[aria-current] span { color:var(--text-accent); font-weight:600; }
+.gd-rail button:focus-visible, .gd-lnk:focus-visible, .gd-sel button:focus-visible, .gd-q summary:focus-visible { outline:2px solid var(--fill-accent); outline-offset:3px; border-radius:var(--r-xs); }
+
+/* the page: thin glass */
+.gd-page { position:relative; padding:clamp(20px,3vw,30px) clamp(8px,2vw,20px) clamp(20px,3vw,28px); animation:gd-in .55s var(--ease) both; }
+.gd-page[data-dir="1"] { --from:34px; } .gd-page[data-dir="-1"] { --from:-34px; } .gd-page[data-dir="0"] { animation:none; }
+@keyframes gd-in { from { opacity:0; transform:translateX(var(--from,0)); } to { opacity:1; transform:none; } }
+.gd-no { display:block; margin-bottom:10px; font-size:var(--fs-2xs); letter-spacing:.42em; color:var(--text-accent); font-weight:500; }
+.gd-chap h2 { font:500 clamp(30px,4.4vw,44px)/1.08 var(--disp); letter-spacing:-.01em; }
+.gd .gd-lead { margin-top:12px; max-width:52ch; font:italic 400 clamp(18px,2.1vw,21px)/1.7 var(--disp); color:var(--text-secondary); }
+.gd-chap { margin-bottom:14px; }
+html[lang="zh"] .gd .gd-lead, html[lang="zh"] .gd .gd-a, html[lang="zh"] .gd .gd-cap { font-style:normal; font-family:var(--kai); }
+html[lang="zh"] .gd .gd-lead { font-size:var(--fs-lg); line-height:1.8; }
+
+/* a name that leads somewhere */
+.gd-lnk { padding:0; border:none; background:linear-gradient(var(--fill-accent),var(--fill-accent)) no-repeat 0 100%/0 1px; color:var(--text-primary); font:600 21px/1.2 var(--disp); text-align:left; cursor:pointer; transition:background-size .4s var(--ease), color .2s; }
+.gd-lnk::after { content:" \2192"; color:var(--text-accent); opacity:0; display:inline-block; transform:translateX(-4px); transition:opacity .3s, transform .3s var(--ease); }
+.gd-lnk:hover { color:var(--text-accent); background-size:100% 1px; } .gd-lnk:hover::after { opacity:1; transform:none; }
+.gd-lnk.sm { font:500 var(--fs-sm)/1.4 inherit; color:var(--text-accent); }
+
+/* 01, 02 */
+.gd-parts { list-style:none; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:40px; border-top:.5px solid var(--border-strong); }
+.gd-parts li { display:flex; gap:14px; padding:10px 0; border-bottom:.5px solid var(--border); }
+.gd-parts i { flex:none; margin-top:3px; font-size:var(--fs-xl); color:var(--text-accent); }
+.gd-parts b { font:600 21px/1.2 var(--disp); }
+.gd .gd-parts p, .gd .gd-words dd, .gd .gd-tx p { margin-top:3px; font-size:var(--fs-sm); line-height:1.65; color:var(--text-secondary); }
+.gd-words { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:40px; border-top:.5px solid var(--border-strong); }
+.gd-words > div { padding:10px 0; border-bottom:.5px solid var(--border); }
+.gd-words dt { font:600 20px/1.2 var(--disp); }
+.gd-data { margin-top:22px; } .gd-data h3 { font:600 22px/1.2 var(--disp); }
+.gd .gd-data p { margin-top:6px; max-width:66ch; font-size:var(--fs-md); line-height:1.8; color:var(--text-secondary); }
+
+/* 03 */
+.gd-prog { display:flex; align-items:center; gap:14px; margin:0 0 4px; font-size:var(--fs-sm); color:var(--text-muted); }
+.gd-track { flex:1; max-width:260px; height:3px; border-radius:3px; background:var(--surface-2); overflow:hidden; } .gd-track i { display:block; height:100%; background:var(--fill-accent); animation:gd-fill 1s .2s var(--ease) backwards; } @keyframes gd-fill { from { width:0; } }
+.gd-todo { list-style:none; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:40px; border-top:.5px solid var(--border-strong); margin-top:12px; }
+.gd-todo li { display:flex; gap:12px; align-items:flex-start; padding:9px 0; border-bottom:.5px solid var(--border); }
+.gd-box { flex:none; display:grid; place-items:center; width:20px; height:20px; margin-top:2px; border:1.5px solid var(--border-strong); border-radius:6px; } .gd-box svg { width:16px; height:16px; fill:none; stroke:var(--fill-accent); stroke-width:3; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:30; stroke-dashoffset:30; }
+.gd-todo li.done .gd-box svg { animation:gd-draw .55s .35s var(--ease) forwards; } @keyframes gd-draw { to { stroke-dashoffset:0; } }
+.gd-todo li.done .gd-lnk { color:var(--text-muted); text-decoration:line-through; text-decoration-color:var(--fill-accent); }
+.gd-tx { flex:1; min-width:0; } .gd-tx .gd-lnk { font-size:19px; } .gd-tx em { margin-left:8px; font:italic 400 14px var(--disp); color:var(--text-muted); }
+
+/* 04 and 05: a small selector, one thing below it */
+.gd-sel { display:flex; flex-wrap:wrap; gap:4px 20px; margin:0 0 16px; border-bottom:.5px solid var(--border-strong); }
+.gd-sel button { padding:7px 0 9px; border:none; border-bottom:1.5px solid transparent; margin-bottom:-.5px; background:none; color:var(--text-secondary); font-size:var(--fs-sm); cursor:pointer; transition:color .2s, border-color .3s; }
+.gd-sel button:hover { color:var(--text-primary); } .gd-sel button[aria-selected="true"] { color:var(--text-primary); border-color:var(--fill-accent); font-weight:600; }
+.gd .gd-cap { margin:0 0 12px; font:italic 400 18px/1.55 var(--disp); color:var(--text-secondary); }
+.gd-frame { padding:2px; border-radius:var(--r-md); animation:gd-in .5s var(--ease) both; }
+.gd-frame .show-board { overflow:hidden; zoom:.72; width:calc(100% / .72); padding:0; } .gd-frame .show-board .board { min-width:0; }
+.gd-faq { display:grid; grid-template-columns:150px minmax(0,1fr); gap:26px; }
+.gd-sel.col { flex-direction:column; flex-wrap:nowrap; gap:0; margin:0; border-bottom:none; border-right:.5px solid var(--border-strong); align-self:start; }
+.gd-sel.col button { text-align:left; padding:9px 14px 9px 0; border-bottom:none; border-right:1.5px solid transparent; margin:0 -.5px 0 0; } .gd-sel.col button[aria-selected="true"] { border-right-color:var(--fill-accent); }
+.gd-q { border-bottom:.5px dashed var(--border-strong); } .gd-q:first-child { border-top:.5px solid var(--border-strong); }
+.gd-q summary { list-style:none; cursor:pointer; display:flex; align-items:baseline; gap:12px; padding:13px 2px 12px; }
+.gd-q summary::-webkit-details-marker { display:none; }
+.gd-qn { flex:none; width:24px; font-size:var(--fs-xs); color:var(--text-muted); letter-spacing:.08em; }
+.gd-qt { font:700 clamp(19px,2.2vw,22px)/1.25 var(--disp); background:linear-gradient(var(--bg-accent),var(--bg-accent)) no-repeat 0 90%/0 .42em; transition:background-size .5s var(--ease); }
+.gd-q summary:hover .gd-qt, .gd-q[open] .gd-qt { background-size:100% .42em; }
+.gd-pm { flex:none; align-self:center; margin-left:auto; width:8px; height:8px; border-right:1.5px solid var(--text-muted); border-bottom:1.5px solid var(--text-muted); transform:rotate(45deg) translateY(-2px); transition:transform .35s var(--ease), border-color .2s; }
+.gd-q[open] .gd-pm { transform:rotate(-135deg) translate(-2px,-1px); border-color:var(--text-accent); }
+.gd .gd-a { margin:0 0 16px 36px; padding:2px 30px 4px 16px; border-left:1.5px solid var(--border-strong); font:italic 400 clamp(17px,2vw,19px)/1.65 var(--disp); color:var(--text-secondary); max-width:62ch; }
+.gd-q[open] .gd-a { animation:gd-write .7s var(--ease) both; } @keyframes gd-write { from { clip-path:inset(0 100% 0 0); } to { clip-path:inset(0); } }
+html[lang="zh"] .gd .gd-a { font-size:var(--fs-md); line-height:1.85; }
+
+@media (max-width:760px) { .gd { grid-template-columns:1fr; gap:12px; } .gd-rail { position:static; flex-direction:row; margin:0; gap:4px; } .gd-rail button, .gd-rail button:first-child { flex:1; padding:6px 0 8px; border:none; border-bottom:1.5px solid var(--border-strong); text-align:center; } .gd-rail button[aria-current] { border-bottom-color:var(--fill-accent); } .gd-rail b { font-size:26px; } .gd-rail span { display:none; } .gd-rail button[aria-current] span { display:none; } .gd-parts, .gd-words, .gd-todo { grid-template-columns:1fr; } .gd-faq { grid-template-columns:1fr; gap:10px; } .gd-sel.col { flex-direction:row; flex-wrap:wrap; gap:4px 18px; border-right:none; border-bottom:.5px solid var(--border-strong); } .gd-sel.col button { border-right:none; border-bottom:1.5px solid transparent; padding:7px 0 9px; } .gd-sel.col button[aria-selected="true"] { border-bottom-color:var(--fill-accent); } .gd .gd-a { margin-left:4px; padding-right:2px; }  }
+@media (prefers-reduced-motion:reduce) { .gd-page, .gd-frame, .gd-q[open] .gd-a, .gd-track i, .gd-todo li.done .gd-box svg { animation:none; } .gd-todo li.done .gd-box svg { stroke-dashoffset:0; } .gd-lnk, .gd-qt, .gd-pm, .gd-rail b, .gd-rail span { transition:none; } }
+
+/* 03: the title is plain text; one small arrow at the end of the row is the link */
+.gd-tx b { font:600 19px/1.2 var(--disp); }
+.gd-todo li.done .gd-tx b { color:var(--text-muted); text-decoration:line-through; text-decoration-color:var(--fill-accent); }
+.gd-arrow { flex:none; align-self:center; display:grid; place-items:center; width:28px; height:28px; border:none; border-radius:50%; background:none; color:var(--text-muted); cursor:pointer; transition:background .25s, color .25s, transform .35s var(--ease); }
+.gd-arrow:hover { background:var(--bg-accent); color:var(--text-accent); transform:translateX(3px); } .gd-arrow:focus-visible { outline:2px solid var(--fill-accent); outline-offset:2px; }
+/* 05: every group at once, two columns, a small tracked label for each */
+.gd-faq { display:block; max-width:720px; } .gd-qg { margin:0 0 34px; }
+.gd-qg h3 { margin:0 0 2px; padding-bottom:8px; border-bottom:.5px solid var(--border-strong); font-size:var(--fs-2xs); letter-spacing:.3em; text-transform:uppercase; color:var(--text-muted); font-weight:500; }
+.gd-q:first-child { border-top:none; }
+
+/* the guide page takes the system accent itself, not the per-page hue the other pages get, so its marks and the header buttons are one colour */
+.panel[data-panel="guide"] { --pc:var(--accent); }
